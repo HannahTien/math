@@ -1,0 +1,12 @@
+services:
+  flask-app:
+    build: .
+    container_name: formula-x-bot
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+    env_file:
+      - .env
