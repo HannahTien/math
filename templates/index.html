@@ -9,7 +9,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@300;400&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -35,7 +35,6 @@
         }
     </script>
     <style>
-        /* 🌟 確保全站基本粗細都是 400 */
         html, body { background-color: #0A0E17; color: #F1F5F9; font-weight: 400; }
         
         .glass-card {
@@ -111,10 +110,10 @@
                      onclick="openModal(this)">
                     <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                     <div class="flex gap-2 mb-3">
-                        <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span>
-                        <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
+                        <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span>
+                        <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
                     </div>
-                    <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">牛頓第二運動定律</h3>
+                    <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">牛頓第二運動定律</h3>
                     <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">F = m × a</div>
                 </div>
                 
@@ -123,10 +122,10 @@
                      onclick="openModal(this)">
                     <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                     <div class="flex gap-2 mb-3">
-                        <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span>
-                        <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
+                        <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span>
+                        <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
                     </div>
-                    <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">畢氏定理</h3>
+                    <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">畢氏定理</h3>
                     <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">a² + b² = c²</div>
                 </div>
             </div>
@@ -136,7 +135,7 @@
             <h1 class="text-4xl font-black mb-10 text-center tracking-widest text-white">數學</h1>
             <div class="mb-10">
                 <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
-                    <h2 class="font-wenkai text-2xl font-bold text-gray-200">一年級</h2>
+                    <h2 class="font-wenkai font-normal text-2xl text-gray-200">一年級</h2>
                     <button onclick="switchToGradeDetail('數學', '一年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -145,10 +144,10 @@
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                         <div class="flex gap-2 mb-3">
-                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span>
-                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span>
+                            <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span>
+                            <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span>
                         </div>
-                        <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">一元一次方程式</h3>
+                        <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">一元一次方程式</h3>
                         <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">ax + b = 0</div>
                     </div>
                 </div>
@@ -159,7 +158,7 @@
             <h1 class="text-4xl font-black mb-10 text-center tracking-widest text-white">理化</h1>
             <div class="mb-10">
                 <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
-                    <h2 class="font-wenkai text-2xl font-bold text-gray-200">二年級</h2>
+                    <h2 class="font-wenkai font-normal text-2xl text-gray-200">二年級</h2>
                     <button onclick="switchToGradeDetail('理化', '二年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -168,10 +167,10 @@
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                         <div class="flex gap-2 mb-3">
-                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span>
-                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
+                            <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span>
+                            <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
                         </div>
-                        <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">密度公式</h3>
+                        <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">密度公式</h3>
                         <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">D = M / V</div>
                     </div>
                 </div>
@@ -180,7 +179,7 @@
 
         <div id="view-grade-detail" class="view-section hidden">
             <button onclick="switchView('view-home')" class="text-highlight hover:text-white mb-6 text-lg transition"><i class="fa-solid fa-arrow-left mr-2"></i>返回</button>
-            <h1 id="grade-detail-title" class="font-wenkai text-3xl font-bold mb-8 border-l-4 border-highlight pl-4 text-white">科目 - 年級</h1>
+            <h1 id="grade-detail-title" class="font-wenkai font-normal text-3xl mb-8 border-l-4 border-highlight pl-4 text-white">科目 - 年級</h1>
             <p class="text-gray-500 text-lg">這裡將動態顯示該年級的所有公式卡片...</p>
         </div>
 
@@ -196,10 +195,10 @@
         <div class="bg-cardbg border border-highlight w-full max-w-md rounded-2xl p-6 relative transform scale-95 transition-transform duration-200 shadow-[0_0_30px_rgba(77,148,255,0.2)]" id="modal-content">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
             <div class="flex gap-2 mb-4" id="modal-tags-container">
-                <span id="modal-subject" class="font-wenkai text-sm text-white font-bold px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">科目</span>
-                <span id="modal-grade" class="font-wenkai text-sm text-white font-bold px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">年級</span>
+                <span id="modal-subject" class="font-wenkai font-light text-sm text-white px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">科目</span>
+                <span id="modal-grade" class="font-wenkai font-light text-sm text-white px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">年級</span>
             </div>
-            <h2 id="modal-title" class="font-wenkai text-3xl font-bold mb-4 text-white tracking-wide">公式名稱</h2>
+            <h2 id="modal-title" class="font-wenkai font-normal text-3xl mb-4 text-white tracking-wide">公式名稱</h2>
             <div id="modal-formula" class="bg-gray-900 text-highlight text-2xl font-mono text-center py-6 rounded-xl mb-6 border border-gray-700 tracking-wider">
                 Formula
             </div>
@@ -301,16 +300,17 @@
             favorites.forEach(fav => {
                 const subjectColor = getSubjectColorClass(fav.subject);
                 const gradeColor = getGradeColorClass(fav.grade);
+                // 🌟 JavaScript 生成的卡片也要拿掉 font-bold，套用細體設定
                 container.innerHTML += `
                     <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
                          data-title="${fav.title}" data-formula="${fav.formula}" data-subject="${fav.subject}" data-grade="${fav.grade}" data-desc="${fav.desc}"
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-yellow-500 hover:text-gray-600 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                         <div class="flex gap-2 mb-3">
-                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 ${subjectColor} rounded-full shadow tracking-wider">${fav.subject}</span>
-                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 ${gradeColor} rounded-full shadow tracking-wider">${fav.grade}</span>
+                            <span class="font-wenkai font-light text-sm text-white px-3 py-1 ${subjectColor} rounded-full shadow tracking-wider">${fav.subject}</span>
+                            <span class="font-wenkai font-light text-sm text-white px-3 py-1 ${gradeColor} rounded-full shadow tracking-wider">${fav.grade}</span>
                         </div>
-                        <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">${fav.title}</h3>
+                        <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">${fav.title}</h3>
                         <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">${fav.formula}</div>
                     </div>
                 `;
@@ -354,10 +354,11 @@
             const modalGrade = document.getElementById('modal-grade');
             
             modalSubject.innerText = subject;
-            modalSubject.className = `font-wenkai text-sm text-white font-bold px-3 py-1 rounded-full shadow tracking-wider ${getSubjectColorClass(subject)}`;
+            // 🌟 彈出視窗 JavaScript 也要拿掉 font-bold
+            modalSubject.className = `font-wenkai font-light text-sm text-white px-3 py-1 rounded-full shadow tracking-wider ${getSubjectColorClass(subject)}`;
             
             modalGrade.innerText = grade;
-            modalGrade.className = `font-wenkai text-sm text-white font-bold px-3 py-1 rounded-full shadow tracking-wider ${getGradeColorClass(grade)}`;
+            modalGrade.className = `font-wenkai font-light text-sm text-white px-3 py-1 rounded-full shadow tracking-wider ${getGradeColorClass(grade)}`;
             
             const modal = document.getElementById('detail-modal');
             const content = document.getElementById('modal-content');
