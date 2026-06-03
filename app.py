@@ -10,8 +10,8 @@ api_key = os.environ.get("GEMINI_API_KEY")
 if api_key:
     genai.configure(api_key=api_key)
     # 使用最新且反應最快的模型
-    model = genai.GenerativeModel('gemini-2.0-flash')
-    
+    model = genai.GenerativeModel('gemini-2.5-flash')
+
 @app.route('/')
 def home():
     return render_template('index.html')
