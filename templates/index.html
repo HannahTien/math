@@ -6,16 +6,24 @@
     <title>FormulaX | 公式秘笈</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    // 🌟 設定自訂字體家族
+                    fontFamily: {
+                        heading: ['Poppins', 'Noto Sans TC', 'sans-serif'], // 標題用幾何字體
+                        body: ['Inter', 'Noto Sans TC', 'sans-serif']      // 本文用現代字體
+                    },
                     colors: {
                         darkbg: '#0A0E17',
                         cardbg: '#141A29',
                         highlight: '#4D94FF',
                         menubg: '#374151',
-                        // 🌟 這裡定義了 5 個標籤各自的專屬顏色 (你可以隨時修改色碼)
+                        // 🌟 定義 5 個標籤顏色
                         tagMath: '#2563EB',    /* 數學：藍色 */
                         tagPhys: '#9333EA',    /* 理化：紫色 */
                         tagG1: '#10B981',      /* 一年級：綠色 */
@@ -27,7 +35,10 @@
         }
     </script>
     <style>
-        body { background-color: #0A0E17; color: #F1F5F9; }
+        /* 🌟 套用自訂字體到整個網站 */
+        html { font-family: 'Inter', 'Noto Sans TC', 'sans-serif'; background-color: #0A0E17; color: #F1F5F9; }
+        h1, h2, h3, h4, span.text-2xl, span.text-xl { font-family: 'Poppins', 'Noto Sans TC', 'sans-serif'; font-weight: 700; }
+        
         .glass-card {
             background-color: #141A29;
             border: 1px solid rgba(77, 148, 255, 0.15);
@@ -36,19 +47,21 @@
         .glass-card:hover {
             border-color: rgba(77, 148, 255, 0.6);
             transform: translateY(-3px);
+            /* 🌟 增加一點點發光感 */
+            box-shadow: 0 0 15px rgba(77, 148, 255, 0.1);
         }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #4D94FF; border-radius: 10px; }
     </style>
 </head>
-<body class="font-sans min-h-screen flex flex-col relative overflow-x-hidden">
+<body class="font-body min-h-screen flex flex-col relative overflow-x-hidden">
 
     <nav class="p-4 flex items-center bg-darkbg border-b border-gray-800 sticky top-0 z-40">
         <button onclick="toggleSidebar()" class="text-2xl text-gray-400 hover:text-white transition mr-4">
             <i class="fa-solid fa-bars"></i>
         </button>
         <div onclick="switchView('view-home')" class="cursor-pointer flex items-center group">
-            <img id="custom-logo" src="/static/logo.png" alt="Logo" class="w-10 h-10 mr-2 group-hover:opacity-80">
+            <img id="custom-logo" src="/static/logo.png" alt="Logo" class="w-20 h-20 mr-1 group-hover:opacity-80 transition">
             <span class="text-2xl font-bold tracking-wider text-white group-hover:text-highlight transition">FormulaX</span>
         </div>
     </nav>
@@ -60,10 +73,10 @@
             </button>
         </div>
         <div class="flex flex-col p-4">
-            <button onclick="switchView('view-home')" class="text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg mb-2"><i class="fa-solid fa-house w-6 mr-2"></i> 首頁</button>
+            <button onclick="switchView('view-home')" class="font-heading text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg mb-2"><i class="fa-solid fa-house w-6 mr-2"></i> 首頁</button>
             
             <div class="mb-2">
-                <button onclick="switchView('view-math')" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-calculator w-6 mr-2"></i> 數學</button>
+                <button onclick="switchView('view-math')" class="font-heading w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-calculator w-6 mr-2"></i> 數學</button>
                 <div class="flex flex-col pl-12 space-y-2 mt-1">
                     <button onclick="switchToGradeDetail('數學', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">一年級</button>
                     <button onclick="switchToGradeDetail('數學', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">二年級</button>
@@ -72,7 +85,7 @@
             </div>
 
             <div class="mb-2">
-                <button onclick="switchView('view-physics')" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-flask w-6 mr-2"></i> 理化</button>
+                <button onclick="switchView('view-physics')" class="font-heading w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-flask w-6 mr-2"></i> 理化</button>
                 <div class="flex flex-col pl-12 space-y-2 mt-1">
                     <button onclick="switchToGradeDetail('理化', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">一年級</button>
                     <button onclick="switchToGradeDetail('理化', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">二年級</button>
@@ -80,7 +93,7 @@
                 </div>
             </div>
 
-            <button onclick="switchView('view-favorites')" class="text-left px-4 py-3 mt-4 rounded-lg hover:bg-gray-600 text-yellow-400 transition font-bold text-lg"><i class="fa-solid fa-star w-6 mr-2"></i> 我的收藏</button>
+            <button onclick="switchView('view-favorites')" class="font-heading text-left px-4 py-3 mt-4 rounded-lg hover:bg-gray-600 text-yellow-400 transition font-bold text-lg"><i class="fa-solid fa-star w-6 mr-2"></i> 我的收藏</button>
         </div>
     </div>
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden"></div>
@@ -89,8 +102,8 @@
         
         <div id="view-home" class="view-section block">
             <div class="text-center my-10">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-wide text-white">要做預習或複習嗎？</h1>
-                <h1 class="text-4xl md:text-5xl font-bold mb-8 tracking-wide text-white">來這裡找你要的公式吧！</h1>
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-wide text-white">要做預習或複習嗎？</h1>
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-8 tracking-wide text-white">來這裡找你要的公式吧！</h1>
             </div>
             
             <h2 class="text-2xl font-bold mb-4 border-l-4 border-highlight pl-3 text-white">常用公式</h2>
@@ -199,7 +212,7 @@
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
         <div id="ai-chatbox" class="hidden w-80 bg-cardbg border border-highlight rounded-2xl shadow-2xl mb-4 overflow-hidden flex flex-col h-96">
             <div class="bg-gray-900 border-b border-gray-800 p-4 font-bold flex justify-between items-center text-white">
-                <span class="text-highlight"><i class="fa-solid fa-robot mr-2"></i>AI 解題助教</span>
+                <span class="font-heading text-highlight"><i class="fa-solid fa-robot mr-2"></i>AI 解題助教</span>
                 <button onclick="toggleChat()" class="hover:text-gray-400"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div id="chat-window" class="flex-1 p-4 overflow-y-auto space-y-4 bg-darkbg">
@@ -211,7 +224,7 @@
                 </div>
             </div>
             <div class="p-3 border-t border-gray-800 bg-cardbg flex gap-2">
-                <input type="text" id="chat-input" placeholder="輸入題目..." class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-highlight">
+                <input type="text" id="chat-input" placeholder="輸入題目..." class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-highlight font-body">
                 <button onclick="sendMessage()" class="bg-highlight px-3 py-2 rounded-lg text-sm font-bold hover:bg-blue-400 text-white transition"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
@@ -228,14 +241,12 @@
             renderFavorites();
         };
 
-        // 自動判斷科目顏色
         function getSubjectColorClass(subject) {
             if(subject === '數學') return 'bg-tagMath';
             if(subject === '理化') return 'bg-tagPhys';
             return 'bg-gray-600';
         }
 
-        // 自動判斷年級顏色
         function getGradeColorClass(grade) {
             if(grade === '一年級') return 'bg-tagG1';
             if(grade === '二年級') return 'bg-tagG2';
@@ -372,7 +383,6 @@
             const message = inputField.value.trim();
             if (!message) return;
 
-            // 🌟 1. 送出訊息後，立刻鎖住輸入框，防止手抖連點！
             inputField.disabled = true;
             inputField.placeholder = "AI 思考中，請稍候...";
 
@@ -380,7 +390,7 @@
 
             chatWindow.innerHTML += `
                 <div class="flex gap-3 justify-end">
-                    <div class="bg-gray-700 p-3 rounded-xl rounded-tr-none text-sm text-white">
+                    <div class="bg-gray-700 p-3 rounded-xl rounded-tr-none text-sm text-white font-body">
                         ${message}
                     </div>
                 </div>
@@ -391,7 +401,7 @@
             const loadingId = 'loading-' + Date.now();
             chatWindow.innerHTML += `
                 <div id="${loadingId}" class="flex gap-3">
-                    <div class="w-8 h-8 rounded-full bg-highlight text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-robot"></i></div>
+                    <div class="w-8 h-8 rounded-full bg-highlight flex items-center justify-center flex-shrink-0 text-white"><i class="fa-solid fa-robot"></i></div>
                     <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-400 italic">
                         AI 思考中...
                     </div>
@@ -418,7 +428,7 @@
                 chatWindow.innerHTML += `
                     <div class="flex gap-3">
                         <div class="w-8 h-8 rounded-full bg-highlight text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-robot"></i></div>
-                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-200">
+                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-200 font-body">
                             ${formattedReply}
                         </div>
                     </div>
@@ -430,14 +440,13 @@
                 chatWindow.innerHTML += `
                     <div class="flex gap-3">
                         <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-red-400">
+                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-red-400 font-body">
                             <strong>真實錯誤原因：</strong><br>${error.message}
                         </div>
                     </div>
                 `;
                 chatWindow.scrollTop = chatWindow.scrollHeight;
             } finally {
-                // 🌟 2. 不管成功還是失敗，最後都把輸入框解鎖
                 inputField.disabled = false;
                 inputField.placeholder = "輸入題目...";
                 inputField.focus();
