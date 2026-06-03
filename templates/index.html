@@ -14,9 +14,13 @@
                         darkbg: '#0A0E17',
                         cardbg: '#141A29',
                         highlight: '#4D94FF',
-                        mathcolor: '#2563EB',   /* 數學的藍色 */
-                        physcolor: '#9333EA',   /* 理化的紫色 */
-                        menubg: '#374151'       /* 漢堡選單的灰色 */
+                        menubg: '#374151',
+                        // 🌟 這裡定義了 5 個標籤各自的專屬顏色 (你可以隨時修改色碼)
+                        tagMath: '#2563EB',    /* 數學：藍色 */
+                        tagPhys: '#9333EA',    /* 理化：紫色 */
+                        tagG1: '#10B981',      /* 一年級：綠色 */
+                        tagG2: '#F59E0B',      /* 二年級：橘黃色 */
+                        tagG3: '#EF4444'       /* 三年級：紅色 */
                     }
                 }
             }
@@ -92,19 +96,25 @@
             <h2 class="text-2xl font-bold mb-4 border-l-4 border-highlight pl-3 text-white">常用公式</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                     data-title="牛頓第二運動定律" data-formula="F = m × a" data-tag="理化 - 二年級" data-desc="用來計算物體受力後產生的加速度。F 是力，m 是質量，a 是加速度。"
+                     data-title="牛頓第二運動定律" data-formula="F = m × a" data-subject="理化" data-grade="二年級" data-desc="用來計算物體受力後產生的加速度。F 是力，m 是質量，a 是加速度。"
                      onclick="openModal(this)">
                     <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
-                    <div class="text-sm text-white font-bold px-3 py-1 bg-physcolor rounded-full inline-block mb-3 shadow">理化 - 二年級</div>
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-sm text-white font-bold px-3 py-1 bg-tagPhys rounded-full shadow">理化</span>
+                        <span class="text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow">二年級</span>
+                    </div>
                     <h3 class="text-2xl font-bold mb-3 text-gray-100">牛頓第二運動定律</h3>
                     <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">F = m × a</div>
                 </div>
                 
                 <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                     data-title="畢氏定理" data-formula="a² + b² = c²" data-tag="數學 - 二年級" data-desc="直角三角形中，兩股的平方和等於斜邊的平方。"
+                     data-title="畢氏定理" data-formula="a² + b² = c²" data-subject="數學" data-grade="二年級" data-desc="直角三角形中，兩股的平方和等於斜邊的平方。"
                      onclick="openModal(this)">
                     <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
-                    <div class="text-sm text-white font-bold px-3 py-1 bg-mathcolor rounded-full inline-block mb-3 shadow">數學 - 二年級</div>
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-sm text-white font-bold px-3 py-1 bg-tagMath rounded-full shadow">數學</span>
+                        <span class="text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow">二年級</span>
+                    </div>
                     <h3 class="text-2xl font-bold mb-3 text-gray-100">畢氏定理</h3>
                     <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">a² + b² = c²</div>
                 </div>
@@ -113,7 +123,6 @@
 
         <div id="view-math" class="view-section hidden">
             <h1 class="text-4xl font-bold mb-10 text-center tracking-widest text-white">數學</h1>
-            
             <div class="mb-10">
                 <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
                     <h2 class="text-2xl font-bold text-gray-200">一年級</h2>
@@ -121,10 +130,13 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                         data-title="一元一次方程式" data-formula="ax + b = 0" data-tag="數學 - 一年級" data-desc="求出未知數 x 的基本方程式。"
+                         data-title="一元一次方程式" data-formula="ax + b = 0" data-subject="數學" data-grade="一年級" data-desc="求出未知數 x 的基本方程式。"
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
-                        <div class="text-sm text-white font-bold px-3 py-1 bg-mathcolor rounded-full inline-block mb-3 shadow">數學 - 一年級</div>
+                        <div class="flex gap-2 mb-3">
+                            <span class="text-sm text-white font-bold px-3 py-1 bg-tagMath rounded-full shadow">數學</span>
+                            <span class="text-sm text-white font-bold px-3 py-1 bg-tagG1 rounded-full shadow">一年級</span>
+                        </div>
                         <h3 class="text-2xl font-bold mb-3 text-gray-100">一元一次方程式</h3>
                         <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">ax + b = 0</div>
                     </div>
@@ -141,10 +153,13 @@
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                         data-title="密度公式" data-formula="D = M / V" data-tag="理化 - 二年級" data-desc="物體的緊密程度。質量除以體積。"
+                         data-title="密度公式" data-formula="D = M / V" data-subject="理化" data-grade="二年級" data-desc="物體的緊密程度。質量除以體積。"
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
-                        <div class="text-sm text-white font-bold px-3 py-1 bg-physcolor rounded-full inline-block mb-3 shadow">理化 - 二年級</div>
+                        <div class="flex gap-2 mb-3">
+                            <span class="text-sm text-white font-bold px-3 py-1 bg-tagPhys rounded-full shadow">理化</span>
+                            <span class="text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow">二年級</span>
+                        </div>
                         <h3 class="text-2xl font-bold mb-3 text-gray-100">密度</h3>
                         <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">D = M / V</div>
                     </div>
@@ -169,7 +184,10 @@
     <div id="detail-modal" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-cardbg border border-highlight w-full max-w-md rounded-2xl p-6 relative transform scale-95 transition-transform duration-200 shadow-[0_0_30px_rgba(77,148,255,0.2)]" id="modal-content">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
-            <div id="modal-tag" class="text-sm text-white font-bold px-3 py-1 rounded-full inline-block mb-4 shadow">標籤</div>
+            <div class="flex gap-2 mb-4" id="modal-tags-container">
+                <span id="modal-subject" class="text-sm text-white font-bold px-3 py-1 rounded-full shadow bg-gray-600">科目</span>
+                <span id="modal-grade" class="text-sm text-white font-bold px-3 py-1 rounded-full shadow bg-gray-600">年級</span>
+            </div>
             <h2 id="modal-title" class="text-3xl font-bold mb-4 text-white">公式名稱</h2>
             <div id="modal-formula" class="bg-gray-900 text-highlight text-2xl font-mono text-center py-6 rounded-xl mb-6 border border-gray-700 tracking-wider">
                 Formula
@@ -184,7 +202,6 @@
                 <span class="text-highlight"><i class="fa-solid fa-robot mr-2"></i>AI 解題助教</span>
                 <button onclick="toggleChat()" class="hover:text-gray-400"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            
             <div id="chat-window" class="flex-1 p-4 overflow-y-auto space-y-4 bg-darkbg">
                 <div class="flex gap-3">
                     <div class="w-8 h-8 rounded-full bg-highlight flex items-center justify-center flex-shrink-0 text-white"><i class="fa-solid fa-robot"></i></div>
@@ -193,13 +210,11 @@
                     </div>
                 </div>
             </div>
-            
             <div class="p-3 border-t border-gray-800 bg-cardbg flex gap-2">
                 <input type="text" id="chat-input" placeholder="輸入題目..." class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-highlight">
                 <button onclick="sendMessage()" class="bg-highlight px-3 py-2 rounded-lg text-sm font-bold hover:bg-blue-400 text-white transition"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
-
         <button onclick="toggleChat()" class="bg-highlight w-14 h-14 rounded-full shadow-[0_0_15px_rgba(77,148,255,0.4)] flex items-center justify-center text-2xl text-white hover:scale-110 transition duration-300">
             <i class="fa-solid fa-robot"></i>
         </button>
@@ -213,10 +228,18 @@
             renderFavorites();
         };
 
-        // 取得標籤對應的顏色
-        function getTagColorClass(tag) {
-            if(tag.includes('數學')) return 'bg-mathcolor';
-            if(tag.includes('理化')) return 'bg-physcolor';
+        // 自動判斷科目顏色
+        function getSubjectColorClass(subject) {
+            if(subject === '數學') return 'bg-tagMath';
+            if(subject === '理化') return 'bg-tagPhys';
+            return 'bg-gray-600';
+        }
+
+        // 自動判斷年級顏色
+        function getGradeColorClass(grade) {
+            if(grade === '一年級') return 'bg-tagG1';
+            if(grade === '二年級') return 'bg-tagG2';
+            if(grade === '三年級') return 'bg-tagG3';
             return 'bg-gray-600';
         }
 
@@ -224,7 +247,8 @@
             const card = btn.closest('.formula-card');
             const title = card.dataset.title;
             const formula = card.dataset.formula;
-            const tag = card.dataset.tag;
+            const subject = card.dataset.subject;
+            const grade = card.dataset.grade;
             const desc = card.dataset.desc;
 
             const index = favorites.findIndex(f => f.title === title);
@@ -232,7 +256,7 @@
             if (index > -1) {
                 favorites.splice(index, 1);
             } else {
-                favorites.push({ title, formula, tag, desc });
+                favorites.push({ title, formula, subject, grade, desc });
             }
 
             localStorage.setItem('formulaFavorites', JSON.stringify(favorites));
@@ -266,13 +290,17 @@
             }
 
             favorites.forEach(fav => {
-                const tagColor = getTagColorClass(fav.tag);
+                const subjectColor = getSubjectColorClass(fav.subject);
+                const gradeColor = getGradeColorClass(fav.grade);
                 container.innerHTML += `
                     <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                         data-title="${fav.title}" data-formula="${fav.formula}" data-tag="${fav.tag}" data-desc="${fav.desc}"
+                         data-title="${fav.title}" data-formula="${fav.formula}" data-subject="${fav.subject}" data-grade="${fav.grade}" data-desc="${fav.desc}"
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-yellow-500 hover:text-gray-600 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
-                        <div class="text-sm text-white font-bold px-3 py-1 ${tagColor} rounded-full inline-block mb-3 shadow">${fav.tag}</div>
+                        <div class="flex gap-2 mb-3">
+                            <span class="text-sm text-white font-bold px-3 py-1 ${subjectColor} rounded-full shadow">${fav.subject}</span>
+                            <span class="text-sm text-white font-bold px-3 py-1 ${gradeColor} rounded-full shadow">${fav.grade}</span>
+                        </div>
                         <h3 class="text-2xl font-bold mb-3 text-gray-100">${fav.title}</h3>
                         <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">${fav.formula}</div>
                     </div>
@@ -307,14 +335,20 @@
         }
 
         function openModal(card) {
-            const tag = card.dataset.tag;
+            const subject = card.dataset.subject;
+            const grade = card.dataset.grade;
             document.getElementById('modal-title').innerText = card.dataset.title;
             document.getElementById('modal-formula').innerText = card.dataset.formula;
             document.getElementById('modal-desc').innerText = card.dataset.desc;
             
-            const modalTag = document.getElementById('modal-tag');
-            modalTag.innerText = tag;
-            modalTag.className = `text-sm text-white font-bold px-3 py-1 rounded-full inline-block mb-4 shadow ${getTagColorClass(tag)}`;
+            const modalSubject = document.getElementById('modal-subject');
+            const modalGrade = document.getElementById('modal-grade');
+            
+            modalSubject.innerText = subject;
+            modalSubject.className = `text-sm text-white font-bold px-3 py-1 rounded-full shadow ${getSubjectColorClass(subject)}`;
+            
+            modalGrade.innerText = grade;
+            modalGrade.className = `text-sm text-white font-bold px-3 py-1 rounded-full shadow ${getGradeColorClass(grade)}`;
             
             const modal = document.getElementById('detail-modal');
             const content = document.getElementById('modal-content');

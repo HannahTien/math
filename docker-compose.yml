@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/app
     environment:
-   -  FLASK_ENV=development
-   -  GEMINI_API_KEY=AIzaSyAC3Du-NM9w18UbE9Ng2ximR1k801sXbVI
+      - FLASK_ENV=development
+      - GEMINI_API_KEY=AIzaSyAC3Du-NM9w18UbE9Ng2ximR1k801sXbVI
     env_file:
       - .env
