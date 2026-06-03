@@ -372,6 +372,10 @@
             const message = inputField.value.trim();
             if (!message) return;
 
+            // 🌟 1. 送出訊息後，立刻鎖住輸入框，防止手抖連點！
+            inputField.disabled = true;
+            inputField.placeholder = "AI 思考中，請稍候...";
+
             const chatWindow = document.getElementById('chat-window');
 
             chatWindow.innerHTML += `
@@ -402,11 +406,9 @@
                     body: JSON.stringify({ message: message })
                 });
                 
-                // 🌟 核心修改：先讀取後端的真實回覆
                 const data = await response.json();
                 
                 if (!response.ok) {
-                    // 如果有錯，直接把後端給的真實錯誤碼當作例外拋出
                     throw new Error(data.reply || "未知的伺服器錯誤");
                 }
                 
@@ -425,7 +427,6 @@
 
             } catch (error) {
                 document.getElementById(loadingId).remove();
-                // 🌟 讓機器人直接說出真實的錯誤原因
                 chatWindow.innerHTML += `
                     <div class="flex gap-3">
                         <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div>
@@ -435,6 +436,11 @@
                     </div>
                 `;
                 chatWindow.scrollTop = chatWindow.scrollHeight;
+            } finally {
+                // 🌟 2. 不管成功還是失敗，最後都把輸入框解鎖
+                inputField.disabled = false;
+                inputField.placeholder = "輸入題目...";
+                inputField.focus();
             }
         }
 
