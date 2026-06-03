@@ -9,13 +9,12 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=Noto+Serif+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    // 🌟 魔法在這裡：直接把全站的「預設字體」強制換成思源宋體
                     fontFamily: {
                         sans: ['"Noto Serif TC"', 'PMingLiU', 'serif'],
                         wenkai: ['"LXGW WenKai Mono TC"', 'monospace']
@@ -36,7 +35,7 @@
         }
     </script>
     <style>
-        /* 確保基本背景與字色 */
+        /* 🌟 確保全站基本粗細都是 400 */
         html, body { background-color: #0A0E17; color: #F1F5F9; font-weight: 400; }
         
         .glass-card {
@@ -60,7 +59,7 @@
             <i class="fa-solid fa-bars"></i>
         </button>
         <div onclick="switchView('view-home')" class="cursor-pointer flex items-center group">
-            <img id="custom-logo" src="/static/logo.png" alt="Logo" class="w-16 h-16 mr-4 group-hover:opacity-80 transition object-contain">
+            <img id="custom-logo" src="/static/logo.png" alt="Logo" class="w-20 h-20 mr-4 group-hover:opacity-80 transition object-contain">
             <span class="text-3xl font-black tracking-wider text-white group-hover:text-highlight transition">FormulaX</span>
         </div>
     </nav>
