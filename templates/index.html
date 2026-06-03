@@ -9,7 +9,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@300;400&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@300;400&family=Noto+Serif+TC:wght@400;700;900&family=STIX+Two+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -17,7 +17,9 @@
                 extend: {
                     fontFamily: {
                         sans: ['"Noto Serif TC"', 'PMingLiU', 'serif'],
-                        wenkai: ['"LXGW WenKai Mono TC"', 'monospace']
+                        wenkai: ['"LXGW WenKai Mono TC"', 'monospace'],
+                        // 🌟 新增：註冊 math 字體為 STIX Two Text
+                        math: ['"STIX Two Text"', '"Noto Serif TC"', 'serif']
                     },
                     colors: {
                         darkbg: '#0A0E17',
@@ -114,7 +116,7 @@
                         <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
                     </div>
                     <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">牛頓第二運動定律</h3>
-                    <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">F = m × a</div>
+                    <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">F = m × a</div>
                 </div>
                 
                 <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
@@ -126,7 +128,7 @@
                         <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
                     </div>
                     <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">畢氏定理</h3>
-                    <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">a² + b² = c²</div>
+                    <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">a² + b² = c²</div>
                 </div>
             </div>
         </div>
@@ -148,7 +150,7 @@
                             <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span>
                         </div>
                         <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">一元一次方程式</h3>
-                        <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">ax + b = 0</div>
+                        <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">ax + b = 0</div>
                     </div>
                 </div>
             </div>
@@ -171,7 +173,7 @@
                             <span class="font-wenkai font-light text-sm text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
                         </div>
                         <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">密度公式</h3>
-                        <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">D = M / V</div>
+                        <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">D = M / V</div>
                     </div>
                 </div>
             </div>
@@ -199,7 +201,7 @@
                 <span id="modal-grade" class="font-wenkai font-light text-sm text-white px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">年級</span>
             </div>
             <h2 id="modal-title" class="font-wenkai font-normal text-3xl mb-4 text-white tracking-wide">公式名稱</h2>
-            <div id="modal-formula" class="bg-gray-900 text-highlight text-2xl font-mono text-center py-6 rounded-xl mb-6 border border-gray-700 tracking-wider">
+            <div id="modal-formula" class="bg-gray-900 text-highlight text-3xl font-math italic text-center py-6 rounded-xl mb-6 border border-gray-700 tracking-wider">
                 Formula
             </div>
             <p id="modal-desc" class="text-gray-300 text-lg leading-relaxed">解說內容</p>
@@ -300,7 +302,6 @@
             favorites.forEach(fav => {
                 const subjectColor = getSubjectColorClass(fav.subject);
                 const gradeColor = getGradeColorClass(fav.grade);
-                // 🌟 JavaScript 生成的卡片也要拿掉 font-bold，套用細體設定
                 container.innerHTML += `
                     <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
                          data-title="${fav.title}" data-formula="${fav.formula}" data-subject="${fav.subject}" data-grade="${fav.grade}" data-desc="${fav.desc}"
@@ -311,7 +312,7 @@
                             <span class="font-wenkai font-light text-sm text-white px-3 py-1 ${gradeColor} rounded-full shadow tracking-wider">${fav.grade}</span>
                         </div>
                         <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">${fav.title}</h3>
-                        <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">${fav.formula}</div>
+                        <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">${fav.formula}</div>
                     </div>
                 `;
             });
@@ -354,7 +355,6 @@
             const modalGrade = document.getElementById('modal-grade');
             
             modalSubject.innerText = subject;
-            // 🌟 彈出視窗 JavaScript 也要拿掉 font-bold
             modalSubject.className = `font-wenkai font-light text-sm text-white px-3 py-1 rounded-full shadow tracking-wider ${getSubjectColorClass(subject)}`;
             
             modalGrade.innerText = grade;
