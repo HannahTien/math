@@ -402,11 +402,14 @@
                     body: JSON.stringify({ message: message })
                 });
                 
+                // 🌟 核心修改：先讀取後端的真實回覆
+                const data = await response.json();
+                
                 if (!response.ok) {
-                    throw new Error("伺服器回應錯誤");
+                    // 如果有錯，直接把後端給的真實錯誤碼當作例外拋出
+                    throw new Error(data.reply || "未知的伺服器錯誤");
                 }
                 
-                const data = await response.json();
                 document.getElementById(loadingId).remove();
                 const formattedReply = data.reply.replace(/\n/g, '<br>');
 
@@ -422,11 +425,12 @@
 
             } catch (error) {
                 document.getElementById(loadingId).remove();
+                // 🌟 讓機器人直接說出真實的錯誤原因
                 chatWindow.innerHTML += `
                     <div class="flex gap-3">
                         <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div>
                         <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-red-400">
-                            連線異常！請檢查 Docker 是否有讀取到 .env，或稍後再試。
+                            <strong>真實錯誤原因：</strong><br>${error.message}
                         </div>
                     </div>
                 `;
