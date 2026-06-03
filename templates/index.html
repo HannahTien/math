@@ -6,38 +6,38 @@
     <title>FormulaX | 公式秘笈</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    // 🌟 設定自訂字體家族
+                    // 🌟 設定 Tailwind 字體變數
                     fontFamily: {
-                        heading: ['Poppins', 'Noto Sans TC', 'sans-serif'], // 標題用幾何字體
-                        body: ['Inter', 'Noto Sans TC', 'sans-serif']      // 本文用現代字體
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        wenkai: ['"LXGW WenKai Mono TC"', 'monospace']
                     },
                     colors: {
                         darkbg: '#0A0E17',
                         cardbg: '#141A29',
                         highlight: '#4D94FF',
                         menubg: '#374151',
-                        // 🌟 定義 5 個標籤顏色
-                        tagMath: '#2563EB',    /* 數學：藍色 */
-                        tagPhys: '#9333EA',    /* 理化：紫色 */
-                        tagG1: '#10B981',      /* 一年級：綠色 */
-                        tagG2: '#F59E0B',      /* 二年級：橘黃色 */
-                        tagG3: '#EF4444'       /* 三年級：紅色 */
+                        tagMath: '#2563EB',
+                        tagPhys: '#9333EA',
+                        tagG1: '#10B981',
+                        tagG2: '#F59E0B',
+                        tagG3: '#EF4444'
                     }
                 }
             }
         }
     </script>
     <style>
-        /* 🌟 套用自訂字體到整個網站 */
-        html { font-family: 'Inter', 'Noto Sans TC', 'sans-serif'; background-color: #0A0E17; color: #F1F5F9; }
-        h1, h2, h3, h4, span.text-2xl, span.text-xl { font-family: 'Poppins', 'Noto Sans TC', 'sans-serif'; font-weight: 700; }
+        /* 🌟 全站預設使用思源宋體 */
+        html, body { font-family: 'Noto Serif TC', serif; background-color: #0A0E17; color: #F1F5F9; }
         
         .glass-card {
             background-color: #141A29;
@@ -47,23 +47,21 @@
         .glass-card:hover {
             border-color: rgba(77, 148, 255, 0.6);
             transform: translateY(-3px);
-            /* 🌟 增加一點點發光感 */
             box-shadow: 0 0 15px rgba(77, 148, 255, 0.1);
         }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #4D94FF; border-radius: 10px; }
     </style>
 </head>
-<body class="font-body min-h-screen flex flex-col relative overflow-x-hidden">
+<body class="min-h-screen flex flex-col relative overflow-x-hidden">
 
-    <nav class="p-4 flex items-center bg-darkbg border-b border-gray-800 sticky top-0 z-40 h-16">
+    <nav class="py-4 px-6 flex items-center bg-darkbg border-b border-gray-800 sticky top-0 z-40">
         <button onclick="toggleSidebar()" class="text-2xl text-gray-400 hover:text-white transition mr-6">
             <i class="fa-solid fa-bars"></i>
         </button>
-        
-        <div onclick="switchView('view-home')" class="cursor-pointer flex items-center group relative pl-16">
-            <img id="custom-logo" src="/static/logo.png" alt="Logo" class="w-24 h-24 absolute -top-9 -left-4 group-hover:opacity-80 transition drop-shadow-lg">
-            <span class="text-2xl font-bold tracking-wider text-white group-hover:text-highlight transition">FormulaX</span>
+        <div onclick="switchView('view-home')" class="cursor-pointer flex items-center group">
+            <img id="custom-logo" src="/static/logo.png" alt="Logo" class="w-16 h-16 mr-4 group-hover:opacity-80 transition">
+            <span class="text-3xl font-black tracking-wider text-white group-hover:text-highlight transition">FormulaX</span>
         </div>
     </nav>
 
@@ -74,27 +72,27 @@
             </button>
         </div>
         <div class="flex flex-col p-4">
-            <button onclick="switchView('view-home')" class="font-heading text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg mb-2"><i class="fa-solid fa-house w-6 mr-2"></i> 首頁</button>
+            <button onclick="switchView('view-home')" class="text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg mb-2"><i class="fa-solid fa-house w-6 mr-2"></i> 首頁</button>
             
             <div class="mb-2">
-                <button onclick="switchView('view-math')" class="font-heading w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-calculator w-6 mr-2"></i> 數學</button>
+                <button onclick="switchView('view-math')" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-calculator w-6 mr-2"></i> 數學</button>
                 <div class="flex flex-col pl-12 space-y-2 mt-1">
-                    <button onclick="switchToGradeDetail('數學', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">一年級</button>
-                    <button onclick="switchToGradeDetail('數學', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">二年級</button>
-                    <button onclick="switchToGradeDetail('數學', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">三年級</button>
+                    <button onclick="switchToGradeDetail('數學', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">一年級</button>
+                    <button onclick="switchToGradeDetail('數學', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">二年級</button>
+                    <button onclick="switchToGradeDetail('數學', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">三年級</button>
                 </div>
             </div>
 
             <div class="mb-2">
-                <button onclick="switchView('view-physics')" class="font-heading w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-flask w-6 mr-2"></i> 理化</button>
+                <button onclick="switchView('view-physics')" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-flask w-6 mr-2"></i> 理化</button>
                 <div class="flex flex-col pl-12 space-y-2 mt-1">
-                    <button onclick="switchToGradeDetail('理化', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">一年級</button>
-                    <button onclick="switchToGradeDetail('理化', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">二年級</button>
-                    <button onclick="switchToGradeDetail('理化', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">三年級</button>
+                    <button onclick="switchToGradeDetail('理化', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">一年級</button>
+                    <button onclick="switchToGradeDetail('理化', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">二年級</button>
+                    <button onclick="switchToGradeDetail('理化', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">三年級</button>
                 </div>
             </div>
 
-            <button onclick="switchView('view-favorites')" class="font-heading text-left px-4 py-3 mt-4 rounded-lg hover:bg-gray-600 text-yellow-400 transition font-bold text-lg"><i class="fa-solid fa-star w-6 mr-2"></i> 我的收藏</button>
+            <button onclick="switchView('view-favorites')" class="text-left px-4 py-3 mt-4 rounded-lg hover:bg-gray-600 text-yellow-400 transition font-bold text-lg"><i class="fa-solid fa-star w-6 mr-2"></i> 我的收藏</button>
         </div>
     </div>
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden"></div>
@@ -103,8 +101,8 @@
         
         <div id="view-home" class="view-section block">
             <div class="text-center my-10">
-                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-wide text-white">要做預習或複習嗎？</h1>
-                <h1 class="text-4xl md:text-5xl font-extrabold mb-8 tracking-wide text-white">來這裡找你要的公式吧！</h1>
+                <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-wide text-white">要做預習或複習嗎？</h1>
+                <h1 class="text-4xl md:text-5xl font-black mb-8 tracking-wide text-white">來這裡找你要的公式吧！</h1>
             </div>
             
             <h2 class="text-2xl font-bold mb-4 border-l-4 border-highlight pl-3 text-white">常用公式</h2>
@@ -114,10 +112,10 @@
                      onclick="openModal(this)">
                     <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                     <div class="flex gap-2 mb-3">
-                        <span class="text-sm text-white font-bold px-3 py-1 bg-tagPhys rounded-full shadow">理化</span>
-                        <span class="text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow">二年級</span>
+                        <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span>
+                        <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-100">牛頓第二運動定律</h3>
+                    <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">牛頓第二運動定律</h3>
                     <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">F = m × a</div>
                 </div>
                 
@@ -126,20 +124,20 @@
                      onclick="openModal(this)">
                     <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                     <div class="flex gap-2 mb-3">
-                        <span class="text-sm text-white font-bold px-3 py-1 bg-tagMath rounded-full shadow">數學</span>
-                        <span class="text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow">二年級</span>
+                        <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span>
+                        <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3 text-gray-100">畢氏定理</h3>
+                    <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">畢氏定理</h3>
                     <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">a² + b² = c²</div>
                 </div>
             </div>
         </div>
 
         <div id="view-math" class="view-section hidden">
-            <h1 class="text-4xl font-bold mb-10 text-center tracking-widest text-white">數學</h1>
+            <h1 class="text-4xl font-black mb-10 text-center tracking-widest text-white">數學</h1>
             <div class="mb-10">
                 <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
-                    <h2 class="text-2xl font-bold text-gray-200">一年級</h2>
+                    <h2 class="font-wenkai text-2xl font-bold text-gray-200">一年級</h2>
                     <button onclick="switchToGradeDetail('數學', '一年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -148,10 +146,10 @@
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                         <div class="flex gap-2 mb-3">
-                            <span class="text-sm text-white font-bold px-3 py-1 bg-tagMath rounded-full shadow">數學</span>
-                            <span class="text-sm text-white font-bold px-3 py-1 bg-tagG1 rounded-full shadow">一年級</span>
+                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span>
+                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-100">一元一次方程式</h3>
+                        <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">一元一次方程式</h3>
                         <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">ax + b = 0</div>
                     </div>
                 </div>
@@ -159,10 +157,10 @@
         </div>
 
         <div id="view-physics" class="view-section hidden">
-            <h1 class="text-4xl font-bold mb-10 text-center tracking-widest text-white">理化</h1>
+            <h1 class="text-4xl font-black mb-10 text-center tracking-widest text-white">理化</h1>
             <div class="mb-10">
                 <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
-                    <h2 class="text-2xl font-bold text-gray-200">二年級</h2>
+                    <h2 class="font-wenkai text-2xl font-bold text-gray-200">二年級</h2>
                     <button onclick="switchToGradeDetail('理化', '二年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -171,10 +169,10 @@
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                         <div class="flex gap-2 mb-3">
-                            <span class="text-sm text-white font-bold px-3 py-1 bg-tagPhys rounded-full shadow">理化</span>
-                            <span class="text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow">二年級</span>
+                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span>
+                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-100">密度</h3>
+                        <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">密度公式</h3>
                         <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">D = M / V</div>
                     </div>
                 </div>
@@ -183,12 +181,12 @@
 
         <div id="view-grade-detail" class="view-section hidden">
             <button onclick="switchView('view-home')" class="text-highlight hover:text-white mb-6 text-lg transition"><i class="fa-solid fa-arrow-left mr-2"></i>返回</button>
-            <h1 id="grade-detail-title" class="text-3xl font-bold mb-8 border-l-4 border-highlight pl-4 text-white">科目 - 年級</h1>
+            <h1 id="grade-detail-title" class="font-wenkai text-3xl font-bold mb-8 border-l-4 border-highlight pl-4 text-white">科目 - 年級</h1>
             <p class="text-gray-500 text-lg">這裡將動態顯示該年級的所有公式卡片...</p>
         </div>
 
         <div id="view-favorites" class="view-section hidden">
-            <h1 class="text-4xl font-bold mb-10 text-center text-yellow-500 tracking-widest"><i class="fa-solid fa-star mr-2"></i>我的收藏</h1>
+            <h1 class="text-4xl font-black mb-10 text-center text-yellow-500 tracking-widest"><i class="fa-solid fa-star mr-2"></i>我的收藏</h1>
             <div id="favorites-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             </div>
         </div>
@@ -199,10 +197,10 @@
         <div class="bg-cardbg border border-highlight w-full max-w-md rounded-2xl p-6 relative transform scale-95 transition-transform duration-200 shadow-[0_0_30px_rgba(77,148,255,0.2)]" id="modal-content">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
             <div class="flex gap-2 mb-4" id="modal-tags-container">
-                <span id="modal-subject" class="text-sm text-white font-bold px-3 py-1 rounded-full shadow bg-gray-600">科目</span>
-                <span id="modal-grade" class="text-sm text-white font-bold px-3 py-1 rounded-full shadow bg-gray-600">年級</span>
+                <span id="modal-subject" class="font-wenkai text-sm text-white font-bold px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">科目</span>
+                <span id="modal-grade" class="font-wenkai text-sm text-white font-bold px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">年級</span>
             </div>
-            <h2 id="modal-title" class="text-3xl font-bold mb-4 text-white">公式名稱</h2>
+            <h2 id="modal-title" class="font-wenkai text-3xl font-bold mb-4 text-white tracking-wide">公式名稱</h2>
             <div id="modal-formula" class="bg-gray-900 text-highlight text-2xl font-mono text-center py-6 rounded-xl mb-6 border border-gray-700 tracking-wider">
                 Formula
             </div>
@@ -213,7 +211,7 @@
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
         <div id="ai-chatbox" class="hidden w-80 bg-cardbg border border-highlight rounded-2xl shadow-2xl mb-4 overflow-hidden flex flex-col h-96">
             <div class="bg-gray-900 border-b border-gray-800 p-4 font-bold flex justify-between items-center text-white">
-                <span class="font-heading text-highlight"><i class="fa-solid fa-robot mr-2"></i>AI 解題助教</span>
+                <span class="text-highlight"><i class="fa-solid fa-robot mr-2"></i>AI 解題助教</span>
                 <button onclick="toggleChat()" class="hover:text-gray-400"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div id="chat-window" class="flex-1 p-4 overflow-y-auto space-y-4 bg-darkbg">
@@ -225,7 +223,7 @@
                 </div>
             </div>
             <div class="p-3 border-t border-gray-800 bg-cardbg flex gap-2">
-                <input type="text" id="chat-input" placeholder="輸入題目..." class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-highlight font-body">
+                <input type="text" id="chat-input" placeholder="輸入題目..." class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-highlight">
                 <button onclick="sendMessage()" class="bg-highlight px-3 py-2 rounded-lg text-sm font-bold hover:bg-blue-400 text-white transition"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
@@ -304,16 +302,17 @@
             favorites.forEach(fav => {
                 const subjectColor = getSubjectColorClass(fav.subject);
                 const gradeColor = getGradeColorClass(fav.grade);
+                // 🌟 收藏頁面的卡片也加上 font-wenkai
                 container.innerHTML += `
                     <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
                          data-title="${fav.title}" data-formula="${fav.formula}" data-subject="${fav.subject}" data-grade="${fav.grade}" data-desc="${fav.desc}"
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-yellow-500 hover:text-gray-600 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                         <div class="flex gap-2 mb-3">
-                            <span class="text-sm text-white font-bold px-3 py-1 ${subjectColor} rounded-full shadow">${fav.subject}</span>
-                            <span class="text-sm text-white font-bold px-3 py-1 ${gradeColor} rounded-full shadow">${fav.grade}</span>
+                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 ${subjectColor} rounded-full shadow tracking-wider">${fav.subject}</span>
+                            <span class="font-wenkai text-sm text-white font-bold px-3 py-1 ${gradeColor} rounded-full shadow tracking-wider">${fav.grade}</span>
                         </div>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-100">${fav.title}</h3>
+                        <h3 class="font-wenkai text-2xl font-bold mb-3 text-gray-100 tracking-wide">${fav.title}</h3>
                         <div class="text-highlight text-xl font-mono text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">${fav.formula}</div>
                     </div>
                 `;
@@ -357,10 +356,10 @@
             const modalGrade = document.getElementById('modal-grade');
             
             modalSubject.innerText = subject;
-            modalSubject.className = `text-sm text-white font-bold px-3 py-1 rounded-full shadow ${getSubjectColorClass(subject)}`;
+            modalSubject.className = `font-wenkai text-sm text-white font-bold px-3 py-1 rounded-full shadow tracking-wider ${getSubjectColorClass(subject)}`;
             
             modalGrade.innerText = grade;
-            modalGrade.className = `text-sm text-white font-bold px-3 py-1 rounded-full shadow ${getGradeColorClass(grade)}`;
+            modalGrade.className = `font-wenkai text-sm text-white font-bold px-3 py-1 rounded-full shadow tracking-wider ${getGradeColorClass(grade)}`;
             
             const modal = document.getElementById('detail-modal');
             const content = document.getElementById('modal-content');
@@ -391,7 +390,7 @@
 
             chatWindow.innerHTML += `
                 <div class="flex gap-3 justify-end">
-                    <div class="bg-gray-700 p-3 rounded-xl rounded-tr-none text-sm text-white font-body">
+                    <div class="bg-gray-700 p-3 rounded-xl rounded-tr-none text-sm text-white">
                         ${message}
                     </div>
                 </div>
@@ -429,7 +428,7 @@
                 chatWindow.innerHTML += `
                     <div class="flex gap-3">
                         <div class="w-8 h-8 rounded-full bg-highlight text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-robot"></i></div>
-                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-200 font-body">
+                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-200">
                             ${formattedReply}
                         </div>
                     </div>
@@ -441,7 +440,7 @@
                 chatWindow.innerHTML += `
                     <div class="flex gap-3">
                         <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-red-400 font-body">
+                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-red-400">
                             <strong>真實錯誤原因：</strong><br>${error.message}
                         </div>
                     </div>
