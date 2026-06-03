@@ -9,15 +9,15 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC&family=Noto+Serif+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    // 🌟 設定 Tailwind 字體變數
+                    // 🌟 魔法在這裡：直接把全站的「預設字體」強制換成思源宋體
                     fontFamily: {
-                        serif: ['"Noto Serif TC"', 'serif'],
+                        sans: ['"Noto Serif TC"', 'PMingLiU', 'serif'],
                         wenkai: ['"LXGW WenKai Mono TC"', 'monospace']
                     },
                     colors: {
@@ -36,8 +36,8 @@
         }
     </script>
     <style>
-        /* 🌟 全站預設使用思源宋體 */
-        html, body { font-family: 'Noto Serif TC', serif; background-color: #0A0E17; color: #F1F5F9; }
+        /* 確保基本背景與字色 */
+        html, body { background-color: #0A0E17; color: #F1F5F9; font-weight: 400; }
         
         .glass-card {
             background-color: #141A29;
@@ -60,7 +60,7 @@
             <i class="fa-solid fa-bars"></i>
         </button>
         <div onclick="switchView('view-home')" class="cursor-pointer flex items-center group">
-            <img id="custom-logo" src="/static/logo.png" alt="Logo" class="w-20 h-20 mr-4 group-hover:opacity-80 transition object-contain">
+            <img id="custom-logo" src="/static/logo.png" alt="Logo" class="w-16 h-16 mr-4 group-hover:opacity-80 transition object-contain">
             <span class="text-3xl font-black tracking-wider text-white group-hover:text-highlight transition">FormulaX</span>
         </div>
     </nav>
@@ -77,18 +77,18 @@
             <div class="mb-2">
                 <button onclick="switchView('view-math')" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-calculator w-6 mr-2"></i> 數學</button>
                 <div class="flex flex-col pl-12 space-y-2 mt-1">
-                    <button onclick="switchToGradeDetail('數學', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">一年級</button>
-                    <button onclick="switchToGradeDetail('數學', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">二年級</button>
-                    <button onclick="switchToGradeDetail('數學', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">三年級</button>
+                    <button onclick="switchToGradeDetail('數學', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">一年級</button>
+                    <button onclick="switchToGradeDetail('數學', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">二年級</button>
+                    <button onclick="switchToGradeDetail('數學', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">三年級</button>
                 </div>
             </div>
 
             <div class="mb-2">
                 <button onclick="switchView('view-physics')" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-flask w-6 mr-2"></i> 理化</button>
                 <div class="flex flex-col pl-12 space-y-2 mt-1">
-                    <button onclick="switchToGradeDetail('理化', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">一年級</button>
-                    <button onclick="switchToGradeDetail('理化', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">二年級</button>
-                    <button onclick="switchToGradeDetail('理化', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition font-wenkai">三年級</button>
+                    <button onclick="switchToGradeDetail('理化', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">一年級</button>
+                    <button onclick="switchToGradeDetail('理化', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">二年級</button>
+                    <button onclick="switchToGradeDetail('理化', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">三年級</button>
                 </div>
             </div>
 
@@ -302,7 +302,6 @@
             favorites.forEach(fav => {
                 const subjectColor = getSubjectColorClass(fav.subject);
                 const gradeColor = getGradeColorClass(fav.grade);
-                // 🌟 收藏頁面的卡片也加上 font-wenkai
                 container.innerHTML += `
                     <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
                          data-title="${fav.title}" data-formula="${fav.formula}" data-subject="${fav.subject}" data-grade="${fav.grade}" data-desc="${fav.desc}"
