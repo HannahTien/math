@@ -1,0 +1,23 @@
+<div id="view-math" class="view-section hidden">
+    <h1 class="text-4xl font-black mb-10 text-center tracking-widest text-white">數學</h1>
+    <div class="mb-10">
+        <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+            <h2 class="font-wenkai font-normal text-2xl text-gray-200">一年級</h2>
+            <button onclick="switchToGradeDetail('數學', '一年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="一元一次方程式" data-formula="ax + b = 0" data-subject="數學" data-grade="一年級" data-desc="求出未知數 x 的基本方程式。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3">
+                    <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span>
+                    <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span>
+                </div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">一元一次方程式</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">ax + b = 0</div>
+            </div>
+            </div>
+    </div>
+</div>

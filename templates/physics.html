@@ -1,0 +1,23 @@
+<div id="view-physics" class="view-section hidden">
+    <h1 class="text-4xl font-black mb-10 text-center tracking-widest text-white">理化</h1>
+    <div class="mb-10">
+        <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+            <h2 class="font-wenkai font-normal text-2xl text-gray-200">二年級</h2>
+            <button onclick="switchToGradeDetail('理化', '二年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="密度公式" data-formula="D = M / V" data-subject="理化" data-grade="二年級" data-desc="物體的緊密程度。質量除以體積。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3">
+                    <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span>
+                    <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
+                </div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">密度公式</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">D = M / V</div>
+            </div>
+            </div>
+    </div>
+</div>

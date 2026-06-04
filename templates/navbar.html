@@ -1,0 +1,41 @@
+<nav class="py-1 px-6 flex items-center bg-darkbg border-b border-gray-800 sticky top-0 z-40">
+    <button onclick="toggleSidebar()" class="text-2xl text-gray-400 hover:text-white transition mr-6">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <div onclick="switchView('view-home')" class="cursor-pointer flex items-center group">
+        <img id="custom-logo" src="/static/logo.png" alt="Logo" class="w-20 h-20 mr-4 group-hover:opacity-80 transition object-contain">
+        <span class="text-3xl font-black tracking-wider text-white group-hover:text-highlight transition">FormulaX</span>
+    </div>
+</nav>
+
+<div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-menubg transform -translate-x-full transition-transform duration-300 z-50 shadow-2xl overflow-y-auto">
+    <div class="p-4 flex justify-end border-b border-gray-600">
+        <button onclick="toggleSidebar()" class="text-gray-300 hover:text-white text-2xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+    <div class="flex flex-col p-4">
+        <button onclick="switchView('view-home')" class="text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg mb-2"><i class="fa-solid fa-house w-6 mr-2"></i> 首頁</button>
+        
+        <div class="mb-2">
+            <button onclick="switchView('view-math')" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-calculator w-6 mr-2"></i> 數學</button>
+            <div class="flex flex-col pl-12 space-y-2 mt-1">
+                <button onclick="switchToGradeDetail('數學', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">一年級</button>
+                <button onclick="switchToGradeDetail('數學', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">二年級</button>
+                <button onclick="switchToGradeDetail('數學', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">三年級</button>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <button onclick="switchView('view-physics')" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-600 text-white transition font-bold text-lg"><i class="fa-solid fa-flask w-6 mr-2"></i> 理化</button>
+            <div class="flex flex-col pl-12 space-y-2 mt-1">
+                <button onclick="switchToGradeDetail('理化', '一年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">一年級</button>
+                <button onclick="switchToGradeDetail('理化', '二年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">二年級</button>
+                <button onclick="switchToGradeDetail('理化', '三年級'); toggleSidebar()" class="text-left text-gray-300 hover:text-highlight transition">三年級</button>
+            </div>
+        </div>
+
+        <button onclick="switchView('view-favorites')" class="text-left px-4 py-3 mt-4 rounded-lg hover:bg-gray-600 text-yellow-400 transition font-bold text-lg"><i class="fa-solid fa-star w-6 mr-2"></i> 我的收藏</button>
+    </div>
+</div>
+<div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden"></div>
