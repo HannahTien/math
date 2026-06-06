@@ -1,5 +1,6 @@
 <div id="view-math" class="view-section hidden">
     <h1 class="text-4xl font-black mb-10 text-center tracking-widest text-white">數學</h1>
+
     <div class="mb-10">
         <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
             <h2 class="font-wenkai font-normal text-2xl text-gray-200">一年級</h2>
@@ -8,16 +9,304 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             
             <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                 data-title="一元一次方程式" data-formula="ax + b = 0" data-subject="數學" data-grade="一年級" data-desc="求出未知數 x 的基本方程式。"
+                 data-title="相反數與絕對值" data-formula="a + (-a) = 0, |a| ≥ 0" data-subject="數學" data-grade="一年級" data-desc="若兩數互為相反數，相加為 0。絕對值代表與原點的距離，必為正數或 0。"
                  onclick="openModal(this)">
                 <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
-                <div class="flex gap-2 mb-3">
-                    <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span>
-                    <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">相反數與絕對值</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>a + b = 0</span>
+                    <span>|-a| = |a| = a (當 a>0)</span>
                 </div>
-                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">一元一次方程式</h3>
-                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">ax + b = 0</div>
             </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="運算三大定律" data-formula="交換、結合、分配律" data-subject="數學" data-grade="一年級" data-desc="交換律(前後對調)、結合律(括號轉移)、分配律(乘法拆分進括號內)。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">運算三大定律</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>交換: a+b = b+a</span>
+                    <span>分配: a×(b+c) = ab+ac</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="數線距離與中點" data-formula="距離=|a-b|, 中點=(a+b)/2" data-subject="數學" data-grade="一年級" data-desc="數線上兩點距離為相減加絕對值；中點坐標為兩數相加除以二。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">數線距離與中點</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>距離 <span class="overline">AB</span> = |a - b|</span>
+                    <div class="flex items-center justify-center gap-2">中點 = <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">a + b</span><span class="pt-1">2</span></div></div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="科學記號標準式" data-formula="a × 10ⁿ (1 ≤ a < 10)" data-subject="數學" data-grade="一年級" data-desc="用來表示極大或極小的數字。前面乘的數字 a 必須大於等於 1 且小於 10。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">科學記號</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>a × 10<sup>n</sup></span>
+                    <span class="text-lg">1 ≤ a < 10</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="常見倍數判別法" data-formula="3與9看數字和，4與8看末尾" data-subject="數學" data-grade="一年級" data-desc="3、9的倍數看「各數字和」；4的倍數看「末兩位」；11的倍數看「奇偶位數字和的差」。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">常見倍數判別</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>3的倍數：數字和 ÷ 3</span>
+                    <span>11的倍數：奇偶位和之差</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="倒數與分數除法" data-formula="a × b = 1 互為倒數" data-subject="數學" data-grade="一年級" data-desc="相乘等於 1 的兩數互為倒數(0沒有倒數)。除以一個分數等於乘上它的倒數。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">倒數與分數除法</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>若 ab=1，a, b 互為倒數</span>
+                    <div class="flex items-center justify-center gap-2">
+                        <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">a</span><span class="pt-1">b</span></div> ÷ 
+                        <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">c</span><span class="pt-1">d</span></div> =
+                        <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">a</span><span class="pt-1">b</span></div> × 
+                        <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">d</span><span class="pt-1">c</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="必背指數律" data-formula="aᵐ × aⁿ = aᵐ⁺ⁿ" data-subject="數學" data-grade="一年級" data-desc="同底相乘指數相加、同底相除指數相減、次方再次方指數相乘。任何非零數的 0 次方為 1。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">必背指數律</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>a<sup>m</sup> × a<sup>n</sup> = a<sup>m+n</sup></span>
+                    <span>(a<sup>m</sup>)<sup>n</sup> = a<sup>mn</sup></span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="等量公理與移項" data-formula="移項變號：+變-，×變÷" data-subject="數學" data-grade="一年級" data-desc="解方程式的基礎。當一個數字跨過等號移到另一邊時，加減互換，乘除互換。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">移項法則</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">
+                    + 移項變 - ； × 移項變 ÷
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="座標平面點的平移" data-formula="右加左減，上加下減" data-subject="數學" data-grade="一年級" data-desc="P(a,b) 點距離 x 軸為 |b|，距離 y 軸為 |a|。平移時口訣為：右加左減，上加下減。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">平移法則 (a, b)</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>向右 s：(a+s, b)</span>
+                    <span>向上 s：(a, b+s)</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="坐標平面兩點距離" data-formula="√((a-c)² + (b-d)²)" data-subject="數學" data-grade="一年級" data-desc="坐標平面上兩點之間的直線距離公式 (畢氏定理的延伸應用)。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">兩點距離公式</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">
+                    √<span class="overline">(a-c)² + (b-d)²</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="中點座標公式" data-formula="M = ((a+c)/2 , (b+d)/2)" data-subject="數學" data-grade="一年級" data-desc="兩點連線段的中心點坐標，即兩點 x 坐標相加除以二，與 y 坐標相加除以二。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">中點座標公式</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex items-center justify-center gap-2">
+                    <span>(</span><div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">a + c</span><span class="pt-1">2</span></div><span>,</span><div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">b + d</span><span class="pt-1">2</span></div><span>)</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="比例式與正反比" data-formula="a:b=c:d ⇒ ad=bc" data-subject="數學" data-grade="一年級" data-desc="內項乘積等於外項乘積。正比關係式為 y=kx；反比關係式為 xy=k。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">比例式與正反比</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>a : b = c : d ⇒ a×d = b×c</span>
+                    <span>正比 y=kx , 反比 xy=k</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="不等式變號規則" data-formula="乘除負數，開口換邊" data-subject="數學" data-grade="一年級" data-desc="在解不等式時，如果等號兩邊同乘或同除以一個「負數」，大於和小於的符號必須變號。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">不等式變號</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">
+                    乘除負數，開口換邊
+                </div>
+            </div>
+
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="聯立方程式：無限多組解" data-formula="a₁/a₂ = b₁/b₂ = c₁/c₂" data-subject="數學" data-grade="一年級" data-desc="當兩直線完全重合時，方程式有無限多組解。此時 x係數比 = y係數比 = 常數項比。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">無限多組解 (重合)</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex items-center justify-center gap-3">
+                    <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">a<sub>1</sub></span><span class="pt-1">a<sub>2</sub></span></div><span>=</span>
+                    <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">b<sub>1</sub></span><span class="pt-1">b<sub>2</sub></span></div><span>=</span>
+                    <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">c<sub>1</sub></span><span class="pt-1">c<sub>2</sub></span></div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="聯立方程式：無解" data-formula="a₁/a₂ = b₁/b₂ ≠ c₁/c₂" data-subject="數學" data-grade="一年級" data-desc="當兩直線互相平行時，方程式無解。此時 x係數比 = y係數比，但不等於常數項比。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">無解 (平行)</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex items-center justify-center gap-3">
+                    <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">a<sub>1</sub></span><span class="pt-1">a<sub>2</sub></span></div><span>=</span>
+                    <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">b<sub>1</sub></span><span class="pt-1">b<sub>2</sub></span></div><span>≠</span>
+                    <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">c<sub>1</sub></span><span class="pt-1">c<sub>2</sub></span></div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="水平線與鉛直線" data-formula="水平線 y = b, 鉛直線 x = a" data-subject="數學" data-grade="一年級" data-desc="水平線平行於 x 軸 (所有點 y 座標相同)；鉛直線平行於 y 軸 (所有點 x 座標相同)。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">特殊直線方程式</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>水平線：y = b</span>
+                    <span>鉛直線：x = a</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="餘角與補角" data-formula="餘角和=90° / 補角和=180°" data-subject="數學" data-grade="一年級" data-desc="若兩角相加為 90°，稱互為餘角；若兩角相加為 180° (平角)，稱互為補角。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">餘角與補角</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>∠1 + ∠2 = 90° (餘角)</span>
+                    <span>∠1 + ∠2 = 180° (補角)</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="對頂角性質" data-formula="∠1 = ∠3" data-subject="數學" data-grade="一年級" data-desc="兩條直線相交所形成的對頂角，其角度必定相等。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">對頂角相等</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">
+                    ∠1 = ∠3
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="平分線性質" data-formula="PA = PB / PD = PE" data-subject="數學" data-grade="一年級" data-desc="1. 中垂線上的點，到線段兩端點等距。 2. 角平分線上的點，到角的兩邊等距。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">平分線超重要性質</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>中垂線：<span class="overline">PA</span> = <span class="overline">PB</span></span>
+                    <span>角平分線：<span class="overline">PD</span> = <span class="overline">PE</span></span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="正 n 邊形的對稱軸" data-formula="正 n 邊形有 n 條對稱軸" data-subject="數學" data-grade="一年級" data-desc="只要是正多邊形（正三角形、正方形、正五邊形...），它的邊數就等於對稱軸的數量。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">正多邊形對稱軸</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">
+                    正 n 邊形 = n 條
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="算術平均數" data-formula="平均數 = 資料總和 / 資料個數" data-subject="數學" data-grade="一年級" data-desc="將一組數值資料總和除以資料個數。特點是「易受極端值影響」。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">算術平均數</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex items-center justify-center gap-3">
+                    <span>平均 =</span>
+                    <div class="flex flex-col items-center">
+                        <span class="border-b border-highlight pb-1 px-2">資料總和</span>
+                        <span class="pt-1">資料個數</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="中位數" data-formula="n為奇數取正中央，n為偶數取中間兩數平均" data-subject="數學" data-grade="一年級" data-desc="將資料「由小到大排序」後，正中央的數值。特點是「不易受極端值影響」。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">中位數</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-2">
+                    <span>n為奇數：第 (n+1)/2 筆</span>
+                    <span>n為偶數：中間兩筆的平均</span>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+                 data-title="眾數" data-formula="出現次數最多的數值" data-subject="數學" data-grade="一年級" data-desc="一組數值資料中，出現次數「最多」的數值。資料可以有一個、多個或沒有眾數。"
+                 onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">眾數</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">
+                    出現次數最多的值
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mb-10">
+        <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+            <h2 class="font-wenkai font-normal text-2xl text-gray-200">二年級</h2>
+            <button onclick="switchToGradeDetail('數學', '二年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             </div>
     </div>
+
+    <div class="mb-10">
+        <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
+            <h2 class="font-wenkai font-normal text-2xl text-gray-200">三年級</h2>
+            <button onclick="switchToGradeDetail('數學', '三年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            </div>
+    </div>
+
 </div>
