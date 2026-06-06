@@ -50,6 +50,12 @@
         }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-thumb { background: #4D94FF; border-radius: 10px; }
+
+        /* 🌟 魔法 1：讓數學和理化主頁的網格，自動隱藏第 4 張以後的卡片 */
+        #view-math .grid .formula-card:nth-child(n+4),
+        #view-physics .grid .formula-card:nth-child(n+4) {
+            display: none !important;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col relative overflow-x-hidden">
@@ -97,9 +103,11 @@
         {% include 'physics.html' %}
 
         <div id="view-grade-detail" class="view-section hidden">
-            <button onclick="switchView('view-home')" class="text-highlight hover:text-white mb-6 text-lg transition"><i class="fa-solid fa-arrow-left mr-2"></i>返回</button>
+            <button onclick="switchView(currentMainView)" class="text-highlight hover:text-white mb-6 text-lg transition"><i class="fa-solid fa-arrow-left mr-2"></i>返回</button>
             <h1 id="grade-detail-title" class="font-wenkai font-normal text-3xl mb-8 border-l-4 border-highlight pl-4 text-white">科目 - 年級</h1>
-            <p class="text-gray-500 text-lg">這裡將動態顯示該年級的所有公式卡片...</p>
+            
+            <div id="grade-detail-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            </div>
         </div>
 
         <div id="view-favorites" class="view-section hidden">
@@ -151,6 +159,7 @@
 
     <script>
         let favorites = JSON.parse(localStorage.getItem('formulaFavorites')) || [];
+        let currentMainView = 'view-home'; // 紀錄目前在哪個主頁面，方便返回
 
         window.onload = () => {
             updateAllStarIcons();
@@ -243,6 +252,11 @@
         }
 
         function switchView(viewId) {
+            // 紀錄當前的主頁面 (首頁、數學或理化)，讓詳細頁面知道按返回要回哪裡
+            if (viewId !== 'view-grade-detail' && viewId !== 'view-favorites') {
+                currentMainView = viewId;
+            }
+
             document.querySelectorAll('.view-section').forEach(el => {
                 el.classList.add('hidden');
                 el.classList.remove('block');
@@ -256,8 +270,24 @@
             window.scrollTo(0, 0);
         }
 
+        // 🌟 魔法 3：點擊「更多」時，自動把隱藏的卡片抓出來並顯示
         function switchToGradeDetail(subject, grade) {
             document.getElementById('grade-detail-title').innerText = `${subject} - ${grade}`;
+            const container = document.getElementById('grade-detail-container');
+            container.innerHTML = ''; // 清空上次顯示的卡片
+
+            // 尋找數學或理化頁面裡，符合該科與該年級的卡片
+            const sourceCards = document.querySelectorAll(`#view-math .formula-card, #view-physics .formula-card`);
+            
+            sourceCards.forEach(card => {
+                if (card.dataset.subject === subject && card.dataset.grade === grade) {
+                    const clone = card.cloneNode(true);
+                    // 確保複製過來的卡片不受 CSS 前 3 張限制的影響
+                    clone.style.display = 'block'; 
+                    container.appendChild(clone);
+                }
+            });
+
             switchView('view-grade-detail');
         }
 
