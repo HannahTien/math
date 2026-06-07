@@ -3,31 +3,107 @@
 
     <div class="mb-10">
         <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
-            <h2 class="font-wenkai font-normal text-2xl text-gray-200">一年級</h2>
-            <button onclick="switchToGradeDetail('理化', '一年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            
-            </div>
-    </div>
-
-    <div class="mb-10">
-        <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
             <h2 class="font-wenkai font-normal text-2xl text-gray-200">二年級</h2>
             <button onclick="switchToGradeDetail('理化', '二年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             
-            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                 data-title="密度公式" data-formula="D = M / V" data-subject="理化" data-grade="二年級" data-desc="物體的緊密程度。質量除以體積。"
-                 onclick="openModal(this)">
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="密度公式" data-formula="D = M / V" data-subject="理化" data-grade="二年級" data-desc="物體的緊密程度。質量除以體積。可變形為 M = V×D 或 V = M/D。" onclick="openModal(this)">
                 <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
-                <div class="flex gap-2 mb-3">
-                    <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span>
-                    <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
-                </div>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
                 <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">密度公式</h3>
-                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">D = M / V</div>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>D = M / V</span><span>M = V × D</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="重量百分率濃度" data-formula="(溶質重 / 溶液重) × 100%" data-subject="理化" data-grade="二年級" data-desc="每100公克溶液中所含溶質的重量。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">重量百分率</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">(溶質重/溶液重) × 100%</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="體積百分率濃度" data-formula="(溶質體積 / 溶液體積) × 100%" data-subject="理化" data-grade="二年級" data-desc="每100毫升溶液中所含溶質的體積。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">體積百分率</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">(溶質體積/溶液體積) × 100%</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="莫耳濃度" data-formula="M = 莫耳數 / 升" data-subject="理化" data-grade="二年級" data-desc="每公升溶液中含有溶質的莫耳數。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">莫耳濃度</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">M = mole / L</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="溶解度" data-formula="溶質質量 / 100g水" data-subject="理化" data-grade="二年級" data-desc="每100公克溶劑(水)中所能溶解溶質的最大量。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">溶解度</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">最大溶質重 / 100g水</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="飽和濃度" data-formula="溶解度 / (100 + 溶解度)" data-subject="理化" data-grade="二年級" data-desc="溶液達飽和時的最大濃度計算方式。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">飽和濃度</h3>
+                <div class="text-highlight text-sm font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">溶解度 / (溶解度 + 100g水)</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="莫耳數計算" data-formula="莫耳數 = 質量 / 分子量" data-subject="理化" data-grade="二年級" data-desc="莫耳數是連接質量與微觀粒子數(6×10²³)的橋樑。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">莫耳數</h3>
+                <div class="text-highlight text-sm font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>質量 / 分子量</span><span>= 粒子數 / (6×10²³)</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="波動公式" data-formula="v = f × λ" data-subject="理化" data-grade="二年級" data-desc="波速(v)等於頻率(f)乘上波長(λ)。週期(T)與頻率互為倒數。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">波動公式</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>v = f × λ</span><span>T = 1 / f</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="聲速公式" data-formula="V = 331 + 0.6t" data-subject="理化" data-grade="二年級" data-desc="在空氣中，溫度(t)每上升1度，聲速會增加0.6 m/s。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">聲速與溫度</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">V = 331 + 0.6t</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="溫標換算" data-formula="F = C × 9/5 + 32" data-subject="理化" data-grade="二年級" data-desc="華氏溫標(F)與攝氏溫標(C)的對應換算。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">溫標換算</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">F = C × 9/5 + 32</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="熱量計算" data-formula="ΔH = m × S × ΔT" data-subject="理化" data-grade="二年級" data-desc="熱量變化等於質量乘上比熱，再乘上溫度變化。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">熱量公式</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">ΔH = m × S × ΔT</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="原子結構" data-formula="原子序 = 質子 = 電子" data-subject="理化" data-grade="二年級" data-desc="中性原子中，原子序等於質子數也等於電子數。質量數=質子數+中子數。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">原子結構</h3>
+                <div class="text-highlight text-sm font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>原子序 = 質子 = 電子</span><span>質量數 = 質子 + 中子</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="離子價數" data-formula="金屬陽離子 + 非金屬陰離子" data-subject="理化" data-grade="二年級" data-desc="原子失去電子變陽離子，得到電子變陰離子，結合成電中性。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">離子與化學式</h3>
+                <div class="text-highlight text-sm font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>失去電子 = 陽離子</span><span>得到電子 = 陰離子</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="力的合成" data-formula="垂直：F = √(F₁² + F₂²)" data-subject="理化" data-grade="二年級" data-desc="力同向相加，反向相減，互相垂直時以畢氏定理求合力。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">力的合成</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">F = √(F₁² + F₂²)</div>
             </div>
 
         </div>
@@ -40,7 +116,139 @@
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="虎克定律" data-formula="F₁ / ΔX₁ = F₂ / ΔX₂" data-subject="理化" data-grade="三年級" data-desc="在彈性限度內，彈簧的伸長量與受力成正比。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">虎克定律</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">F₁ / ΔX₁ = F₂ / ΔX₂</div>
             </div>
-    </div>
 
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="摩擦力" data-formula="靜摩擦力 = 外力" data-subject="理化" data-grade="三年級" data-desc="推不動時外力等於靜摩擦力；啟動瞬間需克服最大靜摩擦力。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">摩擦力判別</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>靜止：外力 = 靜摩擦</span><span>啟動：看最大靜摩擦</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="固體壓力" data-formula="P = F / A" data-subject="理化" data-grade="三年級" data-desc="壓力(P)等於總受力(F)除以接觸面積(A)。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">固體壓力</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">P = F / A</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="液體壓力" data-formula="P = h × d" data-subject="理化" data-grade="三年級" data-desc="液面下的壓力與深度(h)及液體密度(d)成正比。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">液體壓力</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">P = h × d</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="帕斯卡原理" data-formula="F₁ / A₁ = F₂ / A₂" data-subject="理化" data-grade="三年級" data-desc="密閉液體能傳遞壓力，小活塞的壓力會等於大活塞的壓力。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">帕斯卡原理</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">F₁ / A₁ = F₂ / A₂</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="大氣壓力" data-formula="1 atm = 76 cm-Hg" data-subject="理化" data-grade="三年級" data-desc="一標準大氣壓等於76公分水銀柱高。每升高100公尺，氣壓下降約0.8 cm-Hg。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">大氣壓力</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">1 atm = 76 cm-Hg</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="浮力計算" data-formula="B = V排 × d液" data-subject="理化" data-grade="三年級" data-desc="浮力等於排開液體的重量。若為浮體，浮力也等於物體本身重量。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">浮力公式</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">B = V排 × d液</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="運動學公式" data-formula="v = v₀ + at, S = v₀t + ½at²" data-subject="理化" data-grade="三年級" data-desc="等加速度運動四大公式，連結速度、位移、時間與加速度。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">運動學公式</h3>
+                <div class="text-highlight text-sm font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>v = v₀ + at</span><span>S = v₀t + ½at²</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="牛頓第二定律" data-formula="F = m × a" data-subject="理化" data-grade="三年級" data-desc="物體受合力作用時，會產生與合力同向的加速度。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">牛頓第二定律</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">F = m × a</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="作功" data-formula="W = F × S" data-subject="理化" data-grade="三年級" data-desc="作功等於施力乘上物體在施力方向上所移動的位移。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">功的計算</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">W = F × S</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="動能與位能" data-formula="Ek = ½mv², U = mgh" data-subject="理化" data-grade="三年級" data-desc="動能與速度的平方成正比；重力位能與高度成正比。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">動能與位能</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>Ek = ½mv²</span><span>U = mgh</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="力矩" data-formula="L = d × F" data-subject="理化" data-grade="三年級" data-desc="力矩等於力臂(支點到作用力線的垂直距離)乘上作用力。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">力矩公式</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">L = d × F</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="電流定義" data-formula="I = Q / t" data-subject="理化" data-grade="三年級" data-desc="電流為每秒鐘通過導體截面的電量(庫侖/秒 = 安培)。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">電流定義</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">I = Q / t</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="電壓與電能" data-formula="V = E / Q, E = Q × V" data-subject="理化" data-grade="三年級" data-desc="電壓為單位電量在電路中所消耗的電能(焦耳/庫侖 = 伏特)。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">電壓與電能</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>V = E / Q</span><span>E = Q × V</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="歐姆定律" data-formula="V = I × R" data-subject="理化" data-grade="三年級" data-desc="定溫下，金屬導體的電壓與電流成正比，比值即為電阻。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">歐姆定律</h3>
+                <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">V = I × R</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="電阻定律" data-formula="R = ρ × (L/A)" data-subject="理化" data-grade="三年級" data-desc="導線電阻大小與長度(L)成正比，與截面積(A)成反比。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">電阻定律</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">R = ρ × (L / A)</div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="功率與電功" data-formula="P = IV, W = IVt" data-subject="理化" data-grade="三年級" data-desc="電功率(P)為單位時間消耗電能。總電能(W)等於電功率乘時間。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">功率與電功</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>P = IV = I²R = V²/R</span><span>W = IVt</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="變壓器與電能" data-formula="V₁/V₂ = N₁/N₂" data-subject="理化" data-grade="三年級" data-desc="變壓器電壓與線圈匝數成正比。1度電 = 3.6×10⁶ 焦耳。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">變壓器與電能</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>V₁/V₂ = N₁/N₂</span><span>1度電 = 3.6×10⁶ J</span></div>
+            </div>
+
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card border border-yellow-500" data-title="質能守恆定律" data-formula="E = mc²" data-subject="理化" data-grade="三年級" data-desc="物體發生核反應時，減少的質量會轉換成巨大的能量釋放。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-yellow-300 tracking-wide">質能守恆定律</h3>
+                <div class="text-highlight text-3xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider text-yellow-400 font-bold">E = mc²</div>
+            </div>
+
+        </div>
+    </div>
 </div>
