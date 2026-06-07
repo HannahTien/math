@@ -160,12 +160,29 @@
     <script>
         let favorites = JSON.parse(localStorage.getItem('formulaFavorites')) || [];
         let currentMainView = 'view-home'; 
-        let lastScrollPosition = 0; // ⭐ 新增：用來記錄切換前的捲軸高度
+        // (註：我們不需要 lastScrollPosition 變數了，因為瀏覽器會幫我們記住！)
 
         window.onload = () => {
             updateAllStarIcons();
             renderFavorites();
+            
+            // ⭐ 1. 網頁剛載入時，建立第一筆歷史紀錄
+            if (!history.state) {
+                history.replaceState({ viewId: 'view-home', scrollY: 0 }, "", "#view-home");
+            } else {
+                // 如果是按 F5 重新整理，可以根據紀錄恢復畫面
+                switchView(history.state.viewId, history.state.scrollY, false);
+            }
         };
+
+        // ⭐ 2. 監聽瀏覽器的「上一頁 (←) / 下一頁 (→)」按鈕
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.viewId) {
+                // 當使用者按上一頁時，讓 switchView 去切換畫面並跳回紀錄的高度
+                // 第三個參數傳 false，代表「不要再新增歷史紀錄了」
+                switchView(event.state.viewId, event.state.scrollY, false);
+            }
+        });
 
         function getSubjectColorClass(subject) {
             if(subject === '數學') return 'bg-tagMath';
@@ -183,7 +200,6 @@
         function toggleFavorite(btn) {
             const card = btn.closest('.formula-card');
             const title = card.dataset.title;
-            // ⭐ 改為抓取卡片外觀真正的 HTML 內容當作公式
             const formula = card.querySelector('.font-math').innerHTML;
             const subject = card.dataset.subject;
             const grade = card.dataset.grade;
@@ -255,8 +271,8 @@
             }
         }
 
-        // ⭐ 修改 switchView 函式，新增 isGoingBack 參數來判斷是不是「返回」操作
-        function switchView(viewId, isGoingBack = false) {
+        // ⭐ 3. 全新升級的 switchView：帶有網址變更與高度存檔功能
+        function switchView(viewId, targetScrollY = 0, updateHistory = true) {
             if (viewId !== 'view-grade-detail' && viewId !== 'view-favorites') {
                 currentMainView = viewId;
             }
@@ -272,26 +288,32 @@
             if (sidebar && !sidebar.classList.contains('-translate-x-full')) {
                 toggleSidebar();
             }
-            
-            // 如果是返回操作，瞬間跳轉回剛剛記住的高度；否則捲動到最上面
-            if (isGoingBack) {
-                setTimeout(() => {
-                    window.scrollTo({ top: lastScrollPosition, behavior: 'instant' });
-                }, 10);
-            } else {
-                window.scrollTo(0, 0);
+
+            // 處理歷史紀錄的儲存與推播
+            if (updateHistory) {
+                // 如果不是狂點同一個頁面
+                if (!history.state || history.state.viewId !== viewId) {
+                    // 【離開前】先把現在看的高度存進目前的歷史紀錄裡
+                    if (history.state) {
+                        history.replaceState({ viewId: history.state.viewId, scrollY: window.scrollY }, "", window.location.hash || "#view-home");
+                    }
+                    // 【進入新頁面】推播新一頁的歷史紀錄，網址後面會多一個 #
+                    history.pushState({ viewId: viewId, scrollY: 0 }, "", "#" + viewId);
+                }
             }
+            
+            // 跳轉到指定的高度（如果是按上一頁回來，就會拿到剛剛存的高度）
+            setTimeout(() => {
+                window.scrollTo({ top: targetScrollY, behavior: 'instant' });
+            }, 10);
         }
 
-        // ⭐ 新增這個函式，專門用來處理「返回主頁」
+        // ⭐ 4. 畫面上的「返回」按鈕，現在直接呼叫瀏覽器的回退機制
         function goBackToMain() {
-            switchView(currentMainView, true);
+            history.back(); // 這等同於你按了瀏覽器左上角的「←」
         }
 
         function switchToGradeDetail(subject, grade) {
-            // ⭐ 在進入詳細頁面之前，先把當下的捲軸高度記錄下來
-            lastScrollPosition = window.scrollY;
-
             document.getElementById('grade-detail-title').innerText = `${subject} - ${grade}`;
             const container = document.getElementById('grade-detail-container');
             container.innerHTML = ''; 
@@ -314,7 +336,6 @@
             const grade = card.dataset.grade;
             document.getElementById('modal-title').innerText = card.dataset.title;
             
-            // ⭐ 同步魔法：抓取卡片上的 .font-math 裡面的真實 HTML！直接呈現在彈出視窗
             const prettyFormulaHTML = card.querySelector('.font-math').innerHTML;
             document.getElementById('modal-formula').innerHTML = prettyFormulaHTML;
             
