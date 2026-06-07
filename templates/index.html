@@ -73,7 +73,7 @@
             <h2 class="text-2xl font-bold mb-4 border-l-4 border-highlight pl-3 text-white">常用公式</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                     data-title="牛頓第二運動定律" data-formula="F = m × a" data-subject="理化" data-grade="二年級" data-desc="用來計算物體受力後產生的加速度。F 是力，m 是質量，a 是加速度。"
+                     data-title="牛頓第二運動定律" data-subject="理化" data-grade="二年級" data-desc="用來計算物體受力後產生的加速度。F 是力，m 是質量，a 是加速度。"
                      onclick="openModal(this)">
                     <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                     <div class="flex gap-2 mb-3">
@@ -85,7 +85,7 @@
                 </div>
                 
                 <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                     data-title="畢氏定理" data-formula="a² + b² = c²" data-subject="數學" data-grade="二年級" data-desc="直角三角形中，兩股的平方和等於斜邊的平方。"
+                     data-title="畢氏定理" data-subject="數學" data-grade="二年級" data-desc="直角三角形中，兩股的平方和等於斜邊的平方。"
                      onclick="openModal(this)">
                     <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                     <div class="flex gap-2 mb-3">
@@ -103,7 +103,7 @@
         {% include 'physics.html' %}
 
         <div id="view-grade-detail" class="view-section hidden">
-            <button onclick="switchView(currentMainView)" class="text-highlight hover:text-white mb-6 text-lg transition"><i class="fa-solid fa-arrow-left mr-2"></i>返回</button>
+            <button onclick="goBackToMain()" class="text-highlight hover:text-white mb-6 text-lg transition"><i class="fa-solid fa-arrow-left mr-2"></i>返回</button>
             <h1 id="grade-detail-title" class="font-wenkai font-normal text-3xl mb-8 border-l-4 border-highlight pl-4 text-white">科目 - 年級</h1>
             
             <div id="grade-detail-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -126,7 +126,7 @@
                 <span id="modal-grade" class="font-wenkai font-light text-base text-white px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">年級</span>
             </div>
             <h2 id="modal-title" class="font-wenkai font-normal text-3xl mb-4 text-white tracking-wide">公式名稱</h2>
-            <div id="modal-formula" class="bg-gray-900 text-highlight text-3xl font-math italic text-center py-6 rounded-xl mb-6 border border-gray-700 tracking-wider">
+            <div id="modal-formula" class="bg-gray-900 text-highlight text-3xl font-math italic text-center py-6 rounded-xl mb-6 border border-gray-700 tracking-wider flex flex-col gap-2 items-center justify-center min-h-[120px]">
                 Formula
             </div>
             <p id="modal-desc" class="text-gray-300 text-lg leading-relaxed">解說內容</p>
@@ -159,7 +159,8 @@
 
     <script>
         let favorites = JSON.parse(localStorage.getItem('formulaFavorites')) || [];
-        let currentMainView = 'view-home'; // 紀錄目前在哪個主頁面，方便返回
+        let currentMainView = 'view-home'; 
+        let lastScrollPosition = 0; // ⭐ 新增：用來記錄切換前的捲軸高度
 
         window.onload = () => {
             updateAllStarIcons();
@@ -182,7 +183,8 @@
         function toggleFavorite(btn) {
             const card = btn.closest('.formula-card');
             const title = card.dataset.title;
-            const formula = card.dataset.formula;
+            // ⭐ 改為抓取卡片外觀真正的 HTML 內容當作公式
+            const formula = card.querySelector('.font-math').innerHTML;
             const subject = card.dataset.subject;
             const grade = card.dataset.grade;
             const desc = card.dataset.desc;
@@ -230,7 +232,7 @@
                 const gradeColor = getGradeColorClass(fav.grade);
                 container.innerHTML += `
                     <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-                         data-title="${fav.title}" data-formula="${fav.formula}" data-subject="${fav.subject}" data-grade="${fav.grade}" data-desc="${fav.desc}"
+                         data-title="${fav.title}" data-subject="${fav.subject}" data-grade="${fav.grade}" data-desc="${fav.desc}"
                          onclick="openModal(this)">
                         <button class="absolute top-4 right-4 text-yellow-500 hover:text-gray-600 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
                         <div class="flex gap-2 mb-3">
@@ -238,7 +240,7 @@
                             <span class="font-wenkai font-light text-base text-white px-3 py-1 ${gradeColor} rounded-full shadow tracking-wider">${fav.grade}</span>
                         </div>
                         <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">${fav.title}</h3>
-                        <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">${fav.formula}</div>
+                        <div class="font-math text-highlight text-2xl italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider flex flex-col gap-1">${fav.formula}</div>
                     </div>
                 `;
             });
@@ -247,12 +249,14 @@
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
+            if(sidebar && overlay) {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            }
         }
 
-        function switchView(viewId) {
-            // 紀錄當前的主頁面 (首頁、數學或理化)，讓詳細頁面知道按返回要回哪裡
+        // ⭐ 修改 switchView 函式，新增 isGoingBack 參數來判斷是不是「返回」操作
+        function switchView(viewId, isGoingBack = false) {
             if (viewId !== 'view-grade-detail' && viewId !== 'view-favorites') {
                 currentMainView = viewId;
             }
@@ -264,25 +268,39 @@
             document.getElementById(viewId).classList.remove('hidden');
             document.getElementById(viewId).classList.add('block');
             
-            if (!document.getElementById('sidebar').classList.contains('-translate-x-full')) {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar && !sidebar.classList.contains('-translate-x-full')) {
                 toggleSidebar();
             }
-            window.scrollTo(0, 0);
+            
+            // 如果是返回操作，瞬間跳轉回剛剛記住的高度；否則捲動到最上面
+            if (isGoingBack) {
+                setTimeout(() => {
+                    window.scrollTo({ top: lastScrollPosition, behavior: 'instant' });
+                }, 10);
+            } else {
+                window.scrollTo(0, 0);
+            }
         }
 
-        // 🌟 魔法 3：點擊「更多」時，自動把隱藏的卡片抓出來並顯示
+        // ⭐ 新增這個函式，專門用來處理「返回主頁」
+        function goBackToMain() {
+            switchView(currentMainView, true);
+        }
+
         function switchToGradeDetail(subject, grade) {
+            // ⭐ 在進入詳細頁面之前，先把當下的捲軸高度記錄下來
+            lastScrollPosition = window.scrollY;
+
             document.getElementById('grade-detail-title').innerText = `${subject} - ${grade}`;
             const container = document.getElementById('grade-detail-container');
-            container.innerHTML = ''; // 清空上次顯示的卡片
+            container.innerHTML = ''; 
 
-            // 尋找數學或理化頁面裡，符合該科與該年級的卡片
             const sourceCards = document.querySelectorAll(`#view-math .formula-card, #view-physics .formula-card`);
             
             sourceCards.forEach(card => {
                 if (card.dataset.subject === subject && card.dataset.grade === grade) {
                     const clone = card.cloneNode(true);
-                    // 確保複製過來的卡片不受 CSS 前 3 張限制的影響
                     clone.style.display = 'block'; 
                     container.appendChild(clone);
                 }
@@ -295,7 +313,11 @@
             const subject = card.dataset.subject;
             const grade = card.dataset.grade;
             document.getElementById('modal-title').innerText = card.dataset.title;
-            document.getElementById('modal-formula').innerText = card.dataset.formula;
+            
+            // ⭐ 同步魔法：抓取卡片上的 .font-math 裡面的真實 HTML！直接呈現在彈出視窗
+            const prettyFormulaHTML = card.querySelector('.font-math').innerHTML;
+            document.getElementById('modal-formula').innerHTML = prettyFormulaHTML;
+            
             document.getElementById('modal-desc').innerText = card.dataset.desc;
             
             const modalSubject = document.getElementById('modal-subject');
