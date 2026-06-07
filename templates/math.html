@@ -545,13 +545,261 @@
         </div>
     </div>
 
+    <!-- 🔴 ================= 三年級區塊 ================= -->
     <div class="mb-10">
         <div class="flex justify-between items-end mb-4 border-b border-gray-800 pb-2">
             <h2 class="font-wenkai font-normal text-2xl text-gray-200">三年級</h2>
             <button onclick="switchToGradeDetail('數學', '三年級')" class="text-lg text-highlight hover:text-blue-300 font-bold">更多 <i class="fa-solid fa-angle-right"></i></button>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+            <!-- 1. 連比例 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="連比例性質" data-formula="x/a = y/b = z/c = r" data-subject="數學" data-grade="三年級" data-desc="若 x:y:z = a:b:c，可假設它們等於一個比例常數 r 進行解題。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">連比例</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">x/a = y/b = z/c</div>
             </div>
+
+            <!-- 2. 分點坐標 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="分點坐標公式" data-formula="R = (na+mc)/(m+n)" data-subject="數學" data-grade="三年級" data-desc="若 R 點在線段 PQ 上且 PR:QR = m:n，可用此公式求 R 坐標 (交叉相乘除以比例和)。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">分點坐標</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex items-center justify-center gap-2">
+                    <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-1">na + mc</span><span class="pt-1">m + n</span></div>
+                </div>
+            </div>
+
+            <!-- 3. 比例線段 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="比例線段" data-formula="AD/DB = AE/EC" data-subject="數學" data-grade="三年級" data-desc="三角形中，若截線平行於底邊，則截出來的線段會成比例。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">比例線段</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">AD : DB = AE : EC</div>
+            </div>
+
+            <!-- 4. 內分比 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="內分比性質" data-formula="AB : AC = BD : CD" data-subject="數學" data-grade="三年級" data-desc="三角形角平分線截對邊的比例，等於相鄰兩邊的長度比。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">內分比性質</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">AB : AC = BD : CD</div>
+            </div>
+
+            <!-- 5. 相似多邊形比例 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="相似多邊形" data-formula="面積比 = 邊長²比" data-subject="數學" data-grade="三年級" data-desc="兩相似圖形周長比等於邊長比，但面積比等於對應邊長的平方比。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">相似形比例</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-1"><span>周長比 = 邊長比</span><span>面積比 = 邊長²比</span></div>
+            </div>
+
+            <!-- 6. 相似三角形判定 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="相似三角形判定" data-formula="AAA, SSS, SAS 相似" data-subject="數學" data-grade="三年級" data-desc="用來判定兩三角形相似的三大性質 (注意 AAA 相似只需檢驗兩個角相等 AA 即可)。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">相似判定</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">AAA, SSS, SAS</div>
+            </div>
+
+            <!-- 7. 母子相似 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="母子相似性質" data-formula="AD² = BD × CD" data-subject="數學" data-grade="三年級" data-desc="直角三角形斜邊上的高，會將原圖形切成兩個與自身相似的子三角形。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">母子相似</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">AD² = BD × CD</div>
+            </div>
+
+            <!-- 8. 特殊直角三角形 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="特殊直角三角形" data-formula="1:√3:2 或 1:1:√2" data-subject="數學" data-grade="三年級" data-desc="30-60-90 三角形邊長比為 1:√3:2；45-45-90 邊長比為 1:1:√2。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">特殊直角邊長比</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-1"><span>1 : √3 : 2</span><span>1 : 1 : √2</span></div>
+            </div>
+
+            <!-- 9. 三角函數 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="三角函數定義" data-formula="sin(A)=對/斜, cos=鄰/斜" data-subject="數學" data-grade="三年級" data-desc="直角三角形中，sin 為對邊除以斜邊，cos 為鄰邊除以斜邊，tan 為對邊除以鄰邊。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">三角函數</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-1"><span>sin = 對/斜</span><span>cos = 鄰/斜</span></div>
+            </div>
+
+            <!-- 10. 扇形 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="扇形弧長與面積" data-formula="圓面積 × (角度/360°)" data-subject="數學" data-grade="三年級" data-desc="利用圓心角占 360° 的比例，乘上圓周長即可得弧長，乘上圓面積即得扇形面積。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">扇形公式</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">面積 = πr² × (度/360)</div>
+            </div>
+
+            <!-- 11. 弦心距 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="弦心距性質" data-formula="垂直必平分" data-subject="數學" data-grade="三年級" data-desc="過圓心且垂直於弦的線段，必定平分此弦。且大弦對小弦心距。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">弦心距性質</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">垂直平分弦</div>
+            </div>
+
+            <!-- 12. 切線段 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="切線段性質" data-formula="圓外一點到兩切點等距" data-subject="數學" data-grade="三年級" data-desc="圓外一點到圓的兩條切線段長度必定相等，且連心線會平分這兩條切線的夾角。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">切線段性質</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-1"><span>PA = PB</span><span>半徑 ⊥ 切線</span></div>
+            </div>
+
+            <!-- 13. 公切線 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="公切線長度" data-formula="√(連心線² - 半徑差/和²)" data-subject="數學" data-grade="三年級" data-desc="外公切線長 = √(連心線² - 半徑差²)；內公切線長 = √(連心線² - 半徑和²)。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">公切線長度</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">由畢氏定理推導</div>
+            </div>
+
+            <!-- 14. 圓周角 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="圓心角與圓周角" data-formula="圓周角 = 圓心角 / 2" data-subject="數學" data-grade="三年級" data-desc="對應相同弧度時，圓周角與弦切角的度數皆為夾弧度數的一半 (即圓心角的一半)。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">圓周角</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">圓周角 = 弧度 / 2</div>
+            </div>
+
+            <!-- 15. 圓內外角 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="圓內角與圓外角" data-formula="內加外減除以二" data-subject="數學" data-grade="三年級" data-desc="圓內角為兩截弧度數和的一半；圓外角為兩截弧度數差的一半。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">內外角公式</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-1"><span>內角：(大弧+小弧)/2</span><span>外角：(大弧-小弧)/2</span></div>
+            </div>
+
+            <!-- 16. 圓內接四邊形 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="圓內接四邊形" data-formula="對角互補" data-subject="數學" data-grade="三年級" data-desc="只要四邊形內接於圓，其對角必定互補 (相加180°)。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">圓內接四邊形</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">∠A + ∠C = 180°</div>
+            </div>
+
+            <!-- 17. 圓外切四邊形 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="圓外切四邊形" data-formula="對邊和相等" data-subject="數學" data-grade="三年級" data-desc="只要四邊形外切於圓，其兩組對邊的長度總和必定相等。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">圓外切四邊形</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">AB + CD = AD + BC</div>
+            </div>
+
+            <!-- 18. 外心 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="三角形外心 (O)" data-formula="到三頂點等距" data-subject="數學" data-grade="三年級" data-desc="三邊中垂線交點。外心到三個頂點距離相等，即為外接圓半徑 R。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">外心性質</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">OA = OB = OC = R</div>
+            </div>
+
+            <!-- 19. 內心 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="三角形內心 (I)" data-formula="到三邊等距" data-subject="數學" data-grade="三年級" data-desc="三角平分線交點。內心到三邊距離相等為 r。面積 = (周長×r)/2。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">內心性質</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-1"><span>距離三邊 = r</span><span>面積 = (周長×r)/2</span></div>
+            </div>
+
+            <!-- 20. 重心 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="三角形重心 (G)" data-formula="中線 2:1 比例" data-subject="數學" data-grade="三年級" data-desc="三條中線的交點，將三角形面積六等分。頂點到重心的距離是重心到對邊中點的兩倍。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">重心性質</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">長段 : 短段 = 2 : 1</div>
+            </div>
+
+            <!-- 21. 二次函數頂點式 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="二次函數頂點式" data-formula="y = a(x-h)² + k" data-subject="數學" data-grade="三年級" data-desc="拋物線標準式，可直接看出頂點坐標為 (h, k)。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">函數頂點式</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">y = a(x-h)² + k</div>
+            </div>
+
+            <!-- 22. 二次函數對稱軸 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="二次函數對稱軸" data-formula="x = h 或 x = -b/2a" data-subject="數學" data-grade="三年級" data-desc="拋物線的對稱軸必定通過頂點的 x 座標。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">對稱軸</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">x = h</div>
+            </div>
+
+            <!-- 23. 二次函數判別式 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="與 X 軸交點" data-formula="b² - 4ac" data-subject="數學" data-grade="三年級" data-desc="利用判別式看交點：>0 兩點，=0 頂點在軸上，<0 不相交。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">與 X 軸交點</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">b² - 4ac</div>
+            </div>
+
+            <!-- 24. 二次函數極值 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="函數極值與開口" data-formula="a>0有最小值, a<0有最大值" data-subject="數學" data-grade="三年級" data-desc="首項係數 a 決定開口方向。a為正開口朝上有最小值；a為負開口朝下有最大值。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">極值與開口</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-1"><span>a > 0 有最小值</span><span>a < 0 有最大值</span></div>
+            </div>
+
+            <!-- 25. 四分位距與盒狀圖 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="四分位距與盒狀圖" data-formula="IQR = Q₃ - Q₁" data-subject="數學" data-grade="三年級" data-desc="四分位距不易受極端值影響。盒狀圖由最小值、Q1、中位數、Q3、最大值組成。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">四分位距</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">IQR = Q₃ - Q₁</div>
+            </div>
+
+            <!-- 26. 單一事件機率 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="單一事件機率" data-formula="發生次數 / 總可能次數" data-subject="數學" data-grade="三年級" data-desc="事件所包含結果的個數，除以實驗中所有可能出現結果的總數。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">機率公式</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex items-center justify-center gap-3">
+                    <span>機率 =</span><div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-2">事件次數</span><span class="pt-1">總可能次數</span></div>
+                </div>
+            </div>
+
+            <!-- 27. 柱體積 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="柱體體積" data-formula="底面積 × 柱高" data-subject="數學" data-grade="三年級" data-desc="無論是角柱還是圓柱，體積皆為底面積乘上高。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">柱體積公式</h3>
+                <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded">底面積 × 柱高</div>
+            </div>
+
+            <!-- 28. 錐體積 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="錐體體積" data-formula="(底面積 × 高) / 3" data-subject="數學" data-grade="三年級" data-desc="錐體積為等底等高柱體積的三分之一。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">錐體積公式</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex items-center justify-center gap-3">
+                    <div class="flex flex-col items-center"><span class="border-b border-highlight pb-1 px-2">底面積 × 柱高</span><span class="pt-1">3</span></div>
+                </div>
+            </div>
+
+            <!-- 29. 角柱頂點邊面 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="n 角柱的頂點與邊面" data-formula="頂點 2n, 邊 3n, 面 n+2" data-subject="數學" data-grade="三年級" data-desc="對於 n 角柱：頂點數量為 2n，稜邊數量為 3n，面數為 n+2。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">n 角柱</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-1"><span>頂點 2n, 邊 3n</span><span>面數 n+2</span></div>
+            </div>
+
+            <!-- 30. 角錐頂點邊面 -->
+            <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="n 角錐的頂點與邊面" data-formula="頂點 n+1, 邊 2n, 面 n+1" data-subject="數學" data-grade="三年級" data-desc="對於 n 角錐：頂點數量為 n+1，稜邊數量為 2n，面數為 n+1。" onclick="openModal(this)">
+                <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+                <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+                <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">n 角錐</h3>
+                <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded flex flex-col gap-1"><span>頂點 n+1, 邊 2n</span><span>面數 n+1</span></div>
+            </div>
+
+        </div>
     </div>
 
 </div>
