@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <button onclick="switchView('view-favorites')" class="text-left px-4 py-3 mt-4 rounded-lg hover:bg-gray-600 text-yellow-400 transition font-bold text-lg"><i class="fa-solid fa-star w-6 mr-2"></i> 我的收藏</button>
+        <a href="{{ url_for('favorites') }}" class="block text-left px-4 py-3 mt-4 rounded-lg hover:bg-gray-600 text-yellow-400 transition font-bold text-lg"><i class="fa-solid fa-star w-6 mr-2"></i> 我的收藏</a>
     </div>
 </div>
 <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden"></div>

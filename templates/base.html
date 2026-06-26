@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormulaX | 公式秘笈</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+Mono+TC:wght@300;400&family=Noto+Serif+TC:wght@400;700;900&family=STIX+Two+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Serif TC"', 'PMingLiU', 'serif'],
+                        wenkai: ['"LXGW WenKai Mono TC"', 'monospace'],
+                        math: ['"STIX Two Text"', '"Noto Serif TC"', 'serif']
+                    },
+                    colors: {
+                        darkbg: '#0A0E17',
+                        cardbg: '#141A29',
+                        highlight: '#4D94FF',
+                        menubg: '#374151',
+                        tagMath: '#2563EB',
+                        tagPhys: '#9333EA',
+                        tagG1: '#10B981',
+                        tagG2: '#F59E0B',
+                        tagG3: '#EF4444'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body { background-color: #0A0E17; color: #F1F5F9; font-weight: 400; }
+       
+        .glass-card {
+            background-color: #141A29;
+            border: 1px solid rgba(77, 148, 255, 0.15);
+            transition: all 0.2s ease-in-out;
+        }
+        .glass-card:hover {
+            border-color: rgba(77, 148, 255, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 0 15px rgba(77, 148, 255, 0.1);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #4D94FF; border-radius: 10px; }
+
+        #view-math .grid .formula-card:nth-child(n+4),
+        #view-physics .grid .formula-card:nth-child(n+4) {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative overflow-x-hidden">
+
+    {% include 'navbar.html' %}
+
+    <main class="flex-1 p-6 max-w-5xl mx-auto w-full">
+        {% block content %}{% endblock %}
+    </main>
+
+    <div id="detail-modal" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardbg border border-highlight w-full max-w-md rounded-2xl p-6 relative transform scale-95 transition-transform duration-200 shadow-[0_0_30px_rgba(77,148,255,0.2)]" id="modal-content">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+            <div class="flex gap-2 mb-4" id="modal-tags-container">
+                <span id="modal-subject" class="font-wenkai font-light text-base text-white px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">科目</span>
+                <span id="modal-grade" class="font-wenkai font-light text-base text-white px-3 py-1 rounded-full shadow bg-gray-600 tracking-wider">年級</span>
+            </div>
+            <h2 id="modal-title" class="font-wenkai font-normal text-3xl mb-4 text-white tracking-wide">公式名稱</h2>
+            <div id="modal-formula" class="bg-gray-900 text-highlight text-3xl font-math italic text-center py-6 rounded-xl mb-6 border border-gray-700 tracking-wider flex flex-col gap-2 items-center justify-center min-h-[120px]">
+                Formula
+            </div>
+            <p id="modal-desc" class="text-gray-300 text-lg leading-relaxed">解說內容</p>
+        </div>
+    </div>
+
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="ai-chatbox" class="hidden w-80 bg-cardbg border border-highlight rounded-2xl shadow-2xl mb-4 overflow-hidden flex flex-col h-96">
+            <div class="bg-gray-900 border-b border-gray-800 p-4 font-bold flex justify-between items-center text-white">
+                <span class="text-highlight"><i class="fa-solid fa-robot mr-2"></i>AI 解題助教</span>
+                <button onclick="toggleChat()" class="hover:text-gray-400"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="chat-window" class="flex-1 p-4 overflow-y-auto space-y-4 bg-darkbg">
+                <div class="flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-highlight flex items-center justify-center flex-shrink-0 text-white"><i class="fa-solid fa-robot"></i></div>
+                    <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-200">
+                        你好！我是你的 AI 解題助教。遇到想不通的題目或是忘記公式，隨時都可以問我！
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 border-t border-gray-800 bg-cardbg flex gap-2">
+                <input type="text" id="chat-input" placeholder="輸入題目..." class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-highlight">
+                <button onclick="sendMessage()" class="bg-highlight px-3 py-2 rounded-lg text-sm font-bold hover:bg-blue-400 text-white transition"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <button onclick="toggleChat()" class="bg-highlight w-14 h-14 rounded-full shadow-[0_0_15px_rgba(77,148,255,0.4)] flex items-center justify-center text-2xl text-white hover:scale-110 transition duration-300">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+    </div>
+
+    <script>
+        let favorites = JSON.parse(localStorage.getItem('formulaFavorites')) || [];
+        let currentMainView = 'view-home';
+
+        window.onload = () => {
+            updateAllStarIcons();
+            renderFavorites();
+           
+            if (!history.state) {
+                history.replaceState({ viewId: 'view-home', scrollY: 0 }, "", "#view-home");
+            } else {
+        
+                switchView(history.state.viewId, history.state.scrollY, false);
+            }
+        };
+
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.viewId) {
+
+                switchView(event.state.viewId, event.state.scrollY, false);
+            }
+        });
+
+        function getSubjectColorClass(subject) {
+            if(subject === '數學') return 'bg-tagMath';
+            if(subject === '理化') return 'bg-tagPhys';
+            return 'bg-gray-600';
+        }
+
+        function getGradeColorClass(grade) {
+            if(grade === '一年級') return 'bg-tagG1';
+            if(grade === '二年級') return 'bg-tagG2';
+            if(grade === '三年級') return 'bg-tagG3';
+            return 'bg-gray-600';
+        }
+
+        function toggleFavorite(btn) {
+            const card = btn.closest('.formula-card');
+            const title = card.dataset.title;
+            const formula = card.querySelector('.font-math').innerHTML;
+            const subject = card.dataset.subject;
+            const grade = card.dataset.grade;
+            const desc = card.dataset.desc;
+
+            const index = favorites.findIndex(f => f.title === title);
+
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push({ title, formula, subject, grade, desc });
+            }
+
+            localStorage.setItem('formulaFavorites', JSON.stringify(favorites));
+            updateAllStarIcons();
+            renderFavorites();
+        }
+
+        function updateAllStarIcons() {
+            document.querySelectorAll('.formula-card').forEach(card => {
+                const title = card.dataset.title;
+                const icon = card.querySelector('.fav-btn i');
+                if(!icon) return;
+               
+                if (favorites.some(f => f.title === title)) {
+                    icon.classList.remove('text-gray-600');
+                    icon.classList.add('text-yellow-500');
+                } else {
+                    icon.classList.remove('text-yellow-500');
+                    icon.classList.add('text-gray-600');
+                }
+            });
+        }
+
+        function renderFavorites() {
+            const container = document.getElementById('favorites-container');
+            // 🌟 核心關鍵：如果目前在首頁或數學頁，找不到這個容器就直接跳出，不往下執行，網頁就不會當機！
+        if (!container) return; 
+
+        container.innerHTML = ''; 
+    
+        if(favorites.length === 0) {
+            container.innerHTML = '<p class="text-gray-500 col-span-full text-center mt-10 text-lg">目前還沒有收藏任何公式喔！</p>';
+            return;
+        }
+        // ... (後面原本的 favorites.forEach 那些都維持原樣不要動)
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            if(sidebar && overlay) {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
+            }
+        }
+
+        function switchView(viewId, targetScrollY = 0, updateHistory = true) {
+            if (viewId !== 'view-grade-detail' && viewId !== 'view-favorites') {
+                currentMainView = viewId;
+            }
+
+            document.querySelectorAll('.view-section').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+            document.getElementById(viewId).classList.remove('hidden');
+            document.getElementById(viewId).classList.add('block');
+           
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar && !sidebar.classList.contains('-translate-x-full')) {
+                toggleSidebar();
+            }
+
+            if (updateHistory) {
+
+                if (!history.state || history.state.viewId !== viewId) {
+
+                    if (history.state) {
+                        history.replaceState({ viewId: history.state.viewId, scrollY: window.scrollY }, "", window.location.hash || "#view-home");
+                    }
+
+                    history.pushState({ viewId: viewId, scrollY: 0 }, "", "#" + viewId);
+                }
+            }
+            
+            setTimeout(() => {
+                window.scrollTo({ top: targetScrollY, behavior: 'instant' });
+            }, 10);
+        }
+
+        function goBackToMain() {
+            history.back(); 
+        }
+
+        function switchToGradeDetail(subject, grade) {
+            document.getElementById('grade-detail-title').innerText = `${subject} - ${grade}`;
+            const container = document.getElementById('grade-detail-container');
+            container.innerHTML = '';
+
+            const sourceCards = document.querySelectorAll(`#view-math .formula-card, #view-physics .formula-card`);
+           
+            sourceCards.forEach(card => {
+                if (card.dataset.subject === subject && card.dataset.grade === grade) {
+                    const clone = card.cloneNode(true);
+                    clone.style.display = 'block';
+                    container.appendChild(clone);
+                }
+            });
+
+            switchView('view-grade-detail');
+        }
+
+        function openModal(card) {
+            const subject = card.dataset.subject;
+            const grade = card.dataset.grade;
+            document.getElementById('modal-title').innerText = card.dataset.title;
+           
+            const prettyFormulaHTML = card.querySelector('.font-math').innerHTML;
+            document.getElementById('modal-formula').innerHTML = prettyFormulaHTML;
+           
+            document.getElementById('modal-desc').innerText = card.dataset.desc;
+           
+            const modalSubject = document.getElementById('modal-subject');
+            const modalGrade = document.getElementById('modal-grade');
+           
+            modalSubject.innerText = subject;
+            modalSubject.className = `font-wenkai font-light text-base text-white px-3 py-1 rounded-full shadow tracking-wider ${getSubjectColorClass(subject)}`;
+           
+            modalGrade.innerText = grade;
+            modalGrade.className = `font-wenkai font-light text-base text-white px-3 py-1 rounded-full shadow tracking-wider ${getGradeColorClass(grade)}`;
+           
+            const modal = document.getElementById('detail-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.remove('hidden');
+            setTimeout(() => content.classList.remove('scale-95'), 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            const content = document.getElementById('modal-content');
+            content.classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 200);
+        }
+
+        function toggleChat() {
+            document.getElementById('ai-chatbox').classList.toggle('hidden');
+        }
+
+        async function sendMessage() {
+            const inputField = document.getElementById('chat-input');
+            const message = inputField.value.trim();
+            if (!message) return;
+
+            inputField.disabled = true;
+            inputField.placeholder = "AI 思考中，請稍候...";
+
+            const chatWindow = document.getElementById('chat-window');
+
+            chatWindow.innerHTML += `
+                <div class="flex gap-3 justify-end">
+                    <div class="bg-gray-700 p-3 rounded-xl rounded-tr-none text-sm text-white">
+                        ${message}
+                    </div>
+                </div>
+            `;
+            inputField.value = '';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            const loadingId = 'loading-' + Date.now();
+            chatWindow.innerHTML += `
+                <div id="${loadingId}" class="flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-highlight flex items-center justify-center flex-shrink-0 text-white"><i class="fa-solid fa-robot"></i></div>
+                    <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-400 italic">
+                        AI 思考中...
+                    </div>
+                </div>
+            `;
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+               
+                const data = await response.json();
+               
+                if (!response.ok) {
+                    throw new Error(data.reply || "未知的伺服器錯誤");
+                }
+               
+                document.getElementById(loadingId).remove();
+                const formattedReply = data.reply.replace(/\n/g, '<br>');
+
+                chatWindow.innerHTML += `
+                    <div class="flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-highlight text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-robot"></i></div>
+                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-200">
+                            ${formattedReply}
+                        </div>
+                    </div>
+                `;
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            } catch (error) {
+                document.getElementById(loadingId).remove();
+                chatWindow.innerHTML += `
+                    <div class="flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-red-400">
+                            <strong>真實錯誤原因：</strong><br>${error.message}
+                        </div>
+                    </div>
+                `;
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            } finally {
+                inputField.disabled = false;
+                inputField.placeholder = "輸入題目...";
+                inputField.focus();
+            }
+        }
+
+        document.getElementById('chat-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html> 

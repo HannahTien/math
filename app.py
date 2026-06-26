@@ -9,12 +9,24 @@ app = Flask(__name__)
 api_key = os.environ.get("GEMINI_API_KEY")
 if api_key:
     genai.configure(api_key=api_key)
-    # 使用最新且反應最快的模型
     model = genai.GenerativeModel('gemini-2.5-flash')
+
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
+
+@app.route('/math')
+def math():
+    return render_template('math.html')
+
+@app.route('/physics')
+def physics():
+    return render_template('physics.html')
+
+@app.route('/favorites')
+def favorites():
+    return render_template('favorites.html')
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
@@ -27,7 +39,6 @@ def chat():
     if not user_message:
         return jsonify({"reply": "請輸入問題喔！"}), 400
 
-    # 🌟 重新洗腦：專業、俐落的正常老師
     prompt = f"""
     你現在是一位專業、有耐心的國中理化與數學老師。
     學生的問題是：「{user_message}」
