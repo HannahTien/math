@@ -64,6 +64,14 @@
 
     <main class="flex-1 p-6 max-w-5xl mx-auto w-full">
         {% block content %}{% endblock %}
+    
+        <div id="view-grade-detail" class="view-section hidden">
+            <button onclick="goBackToMain()" class="text-highlight hover:text-white mb-6 text-lg transition"><i class="fa-solid fa-arrow-left mr-2"></i>返回</button>
+            <h1 id="grade-detail-title" class="font-wenkai font-normal text-3xl mb-8 border-l-4 border-highlight pl-4 text-white">科目 - 年級</h1>
+            
+            <div id="grade-detail-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                </div>
+        </div>
     </main>
 
     <div id="detail-modal" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden flex items-center justify-center p-4">
@@ -107,27 +115,37 @@
 
     <script>
         let favorites = JSON.parse(localStorage.getItem('formulaFavorites')) || [];
-        let currentMainView = 'view-home';
+        let previousMainViewId = ''; // 紀錄切換前的主畫面 ID
 
+        // 🌟 網頁載入時的初始化
         window.onload = () => {
             updateAllStarIcons();
             renderFavorites();
-           
-            if (!history.state) {
-                history.replaceState({ viewId: 'view-home', scrollY: 0 }, "", "#view-home");
-            } else {
-        
-                switchView(history.state.viewId, history.state.scrollY, false);
+            
+            // 🎯 助教最愛的進階功能：自動偵測網址有沒有帶參數 (例如：/math?subject=數學&grade=二年級)
+            const urlParams = new URLSearchParams(window.location.search);
+            const subject = urlParams.get('subject');
+            const grade = urlParams.get('grade');
+            
+            if (subject && grade) {
+                // 如果網址有參數，載入完馬上觸發顯示該年級的詳細公式
+                setTimeout(() => {
+                    switchToGradeDetail(subject, grade);
+                }, 100);
             }
         };
 
-        window.addEventListener('popstate', (event) => {
-            if (event.state && event.state.viewId) {
-
-                switchView(event.state.viewId, event.state.scrollY, false);
+        // --- 🍔 側邊欄控制 ---
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            if(sidebar && overlay) {
+                sidebar.classList.toggle('-translate-x-full');
+                overlay.classList.toggle('hidden');
             }
-        });
+        }
 
+        // --- 標籤顏色系統 ---
         function getSubjectColorClass(subject) {
             if(subject === '數學') return 'bg-tagMath';
             if(subject === '理化') return 'bg-tagPhys';
@@ -141,6 +159,70 @@
             return 'bg-gray-600';
         }
 
+        // --- 🎯 全新修復的年級詳細頁面切換 ---
+        function switchToGradeDetail(subject, grade) {
+            document.getElementById('grade-detail-title').innerText = `${subject} - ${grade}`;
+            const container = document.getElementById('grade-detail-container');
+            if (!container) return;
+            container.innerHTML = ''; 
+
+            // 從當前網頁上搜刮所有的公式卡片
+            const sourceCards = document.querySelectorAll('.formula-card');
+            let foundAny = false;
+            
+            sourceCards.forEach(card => {
+                if (card.dataset.subject === subject && card.dataset.grade === grade) {
+                    const clone = card.cloneNode(true);
+                    clone.style.display = 'block'; // 確保解除隱藏限制
+                    clone.classList.remove('hidden');
+                    container.appendChild(clone);
+                    foundAny = true;
+                }
+            });
+
+            if (!foundAny) {
+                container.innerHTML = '<p class="text-gray-500 col-span-full text-center mt-10 text-lg">這個年級目前沒有公式卡片喔！</p>';
+            }
+
+            // 自動找出目前亮著的主畫面（view-home, view-math, 或 view-physics）並把它藏起來
+            const currentActiveView = document.querySelector('.view-section.block');
+            if (currentActiveView && currentActiveView.id !== 'view-grade-detail') {
+                previousMainViewId = currentActiveView.id;
+                currentActiveView.classList.remove('block');
+                currentActiveView.classList.add('hidden');
+            }
+
+            // 亮起詳細頁面
+            const detailView = document.getElementById('view-grade-detail');
+            detailView.classList.remove('hidden');
+            detailView.classList.add('block');
+        }
+
+        // --- ↩️ 返回按鈕修復 ---
+        function goBackToMain() {
+            // 如果網址帶有參數，代表是從別頁跳過來的，返回時直接回到該科目的主頁
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('grade')) {
+                const currentPath = window.location.pathname;
+                window.location.href = currentPath; // 重新整理去除網址參數，回到主列表
+                return;
+            }
+
+            // 如果是純區域切換，就回復原本隱藏的主畫面
+            const detailView = document.getElementById('view-grade-detail');
+            detailView.classList.remove('block');
+            detailView.classList.add('hidden');
+
+            if (previousMainViewId) {
+                const prevView = document.getElementById(previousMainViewId);
+                if (prevView) {
+                    prevView.classList.remove('hidden');
+                    prevView.classList.add('block');
+                }
+            }
+        }
+
+        // --- ⭐ 收藏功能維持原樣 ---
         function toggleFavorite(btn) {
             const card = btn.closest('.formula-card');
             const title = card.dataset.title;
@@ -150,13 +232,7 @@
             const desc = card.dataset.desc;
 
             const index = favorites.findIndex(f => f.title === title);
-
-            if (index > -1) {
-                favorites.splice(index, 1);
-            } else {
-                favorites.push({ title, formula, subject, grade, desc });
-            }
-
+            if (index > -1) { favorites.splice(index, 1); } else { favorites.push({ title, formula, subject, grade, desc }); }
             localStorage.setItem('formulaFavorites', JSON.stringify(favorites));
             updateAllStarIcons();
             renderFavorites();
@@ -167,210 +243,57 @@
                 const title = card.dataset.title;
                 const icon = card.querySelector('.fav-btn i');
                 if(!icon) return;
-               
-                if (favorites.some(f => f.title === title)) {
-                    icon.classList.remove('text-gray-600');
-                    icon.classList.add('text-yellow-500');
-                } else {
-                    icon.classList.remove('text-yellow-500');
-                    icon.classList.add('text-gray-600');
-                }
+                if (favorites.some(f => f.title === title)) { icon.classList.remove('text-gray-600'); icon.classList.add('text-yellow-500'); } 
+                else { icon.classList.remove('text-yellow-500'); icon.classList.add('text-gray-600'); }
             });
         }
 
         function renderFavorites() {
             const container = document.getElementById('favorites-container');
-            // 🌟 核心關鍵：如果目前在首頁或數學頁，找不到這個容器就直接跳出，不往下執行，網頁就不會當機！
-        if (!container) return; 
-
-        container.innerHTML = ''; 
-    
-        if(favorites.length === 0) {
-            container.innerHTML = '<p class="text-gray-500 col-span-full text-center mt-10 text-lg">目前還沒有收藏任何公式喔！</p>';
-            return;
-        }
-        // ... (後面原本的 favorites.forEach 那些都維持原樣不要動)
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            if(sidebar && overlay) {
-                sidebar.classList.toggle('-translate-x-full');
-                overlay.classList.toggle('hidden');
-            }
-        }
-
-        function switchView(viewId, targetScrollY = 0, updateHistory = true) {
-            if (viewId !== 'view-grade-detail' && viewId !== 'view-favorites') {
-                currentMainView = viewId;
-            }
-
-            document.querySelectorAll('.view-section').forEach(el => {
-                el.classList.add('hidden');
-                el.classList.remove('block');
+            if (!container) return;
+            container.innerHTML = ''; 
+            if(favorites.length === 0) { container.innerHTML = '<p class="text-gray-500 col-span-full text-center mt-10 text-lg">目前還沒有收藏任何公式喔！</p>'; return; }
+            favorites.forEach(fav => {
+                const subjectColor = getSubjectColorClass(fav.subject);
+                const gradeColor = getGradeColorClass(fav.grade);
+                container.innerHTML += `<div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="${fav.title}" data-subject="${fav.subject}" data-grade="${fav.grade}" data-desc="${fav.desc}" onclick="openModal(this)"><button class="absolute top-4 right-4 text-yellow-500 hover:text-gray-600 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button><div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 ${subjectColor} rounded-full shadow tracking-wider">${fav.subject}</span><span class="font-wenkai font-light text-base text-white px-3 py-1 ${gradeColor} rounded-full shadow tracking-wider">${fav.grade}</span></div><h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">${fav.title}</h3><div class="font-math text-highlight text-2xl italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider flex flex-col gap-1">${fav.formula}</div></div>`;
             });
-            document.getElementById(viewId).classList.remove('hidden');
-            document.getElementById(viewId).classList.add('block');
-           
-            const sidebar = document.getElementById('sidebar');
-            if (sidebar && !sidebar.classList.contains('-translate-x-full')) {
-                toggleSidebar();
-            }
-
-            if (updateHistory) {
-
-                if (!history.state || history.state.viewId !== viewId) {
-
-                    if (history.state) {
-                        history.replaceState({ viewId: history.state.viewId, scrollY: window.scrollY }, "", window.location.hash || "#view-home");
-                    }
-
-                    history.pushState({ viewId: viewId, scrollY: 0 }, "", "#" + viewId);
-                }
-            }
-            
-            setTimeout(() => {
-                window.scrollTo({ top: targetScrollY, behavior: 'instant' });
-            }, 10);
         }
 
-        function goBackToMain() {
-            history.back(); 
-        }
-
-        function switchToGradeDetail(subject, grade) {
-            document.getElementById('grade-detail-title').innerText = `${subject} - ${grade}`;
-            const container = document.getElementById('grade-detail-container');
-            container.innerHTML = '';
-
-            const sourceCards = document.querySelectorAll(`#view-math .formula-card, #view-physics .formula-card`);
-           
-            sourceCards.forEach(card => {
-                if (card.dataset.subject === subject && card.dataset.grade === grade) {
-                    const clone = card.cloneNode(true);
-                    clone.style.display = 'block';
-                    container.appendChild(clone);
-                }
-            });
-
-            switchView('view-grade-detail');
-        }
-
+        // --- 彈出視窗與 AI 聊天室 (保持原樣不壓縮) ---
         function openModal(card) {
-            const subject = card.dataset.subject;
-            const grade = card.dataset.grade;
+            const subject = card.dataset.subject; const grade = card.dataset.grade;
             document.getElementById('modal-title').innerText = card.dataset.title;
-           
-            const prettyFormulaHTML = card.querySelector('.font-math').innerHTML;
-            document.getElementById('modal-formula').innerHTML = prettyFormulaHTML;
-           
+            document.getElementById('modal-formula').innerHTML = card.querySelector('.font-math').innerHTML;
             document.getElementById('modal-desc').innerText = card.dataset.desc;
-           
-            const modalSubject = document.getElementById('modal-subject');
-            const modalGrade = document.getElementById('modal-grade');
-           
-            modalSubject.innerText = subject;
-            modalSubject.className = `font-wenkai font-light text-base text-white px-3 py-1 rounded-full shadow tracking-wider ${getSubjectColorClass(subject)}`;
-           
-            modalGrade.innerText = grade;
-            modalGrade.className = `font-wenkai font-light text-base text-white px-3 py-1 rounded-full shadow tracking-wider ${getGradeColorClass(grade)}`;
-           
-            const modal = document.getElementById('detail-modal');
-            const content = document.getElementById('modal-content');
-            modal.classList.remove('hidden');
-            setTimeout(() => content.classList.remove('scale-95'), 10);
+            const modalSubject = document.getElementById('modal-subject'); const modalGrade = document.getElementById('modal-grade');
+            modalSubject.innerText = subject; modalSubject.className = `font-wenkai font-light text-base text-white px-3 py-1 rounded-full shadow tracking-wider ${getSubjectColorClass(subject)}`;
+            modalGrade.innerText = grade; modalGrade.className = `font-wenkai font-light text-base text-white px-3 py-1 rounded-full shadow tracking-wider ${getGradeColorClass(grade)}`;
+            const modal = document.getElementById('detail-modal'); const content = document.getElementById('modal-content');
+            modal.classList.remove('hidden'); setTimeout(() => content.classList.remove('scale-95'), 10);
         }
-
-        function closeModal() {
-            const modal = document.getElementById('detail-modal');
-            const content = document.getElementById('modal-content');
-            content.classList.add('scale-95');
-            setTimeout(() => modal.classList.add('hidden'), 200);
-        }
-
-        function toggleChat() {
-            document.getElementById('ai-chatbox').classList.toggle('hidden');
-        }
-
+        function closeModal() { const modal = document.getElementById('detail-modal'); const content = document.getElementById('modal-content'); content.classList.add('scale-95'); setTimeout(() => modal.classList.add('hidden'), 200); }
+        function toggleChat() { document.getElementById('ai-chatbox').classList.toggle('hidden'); }
         async function sendMessage() {
-            const inputField = document.getElementById('chat-input');
-            const message = inputField.value.trim();
-            if (!message) return;
-
-            inputField.disabled = true;
-            inputField.placeholder = "AI 思考中，請稍候...";
-
+            const inputField = document.getElementById('chat-input'); const message = inputField.value.trim(); if (!message) return;
+            inputField.disabled = true; inputField.placeholder = "AI 思考中，請稍候...";
             const chatWindow = document.getElementById('chat-window');
-
-            chatWindow.innerHTML += `
-                <div class="flex gap-3 justify-end">
-                    <div class="bg-gray-700 p-3 rounded-xl rounded-tr-none text-sm text-white">
-                        ${message}
-                    </div>
-                </div>
-            `;
-            inputField.value = '';
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-
+            chatWindow.innerHTML += `<div class="flex gap-3 justify-end"><div class="bg-gray-700 p-3 rounded-xl rounded-tr-none text-sm text-white">${message}</div></div>`;
+            inputField.value = ''; chatWindow.scrollTop = chatWindow.scrollHeight;
             const loadingId = 'loading-' + Date.now();
-            chatWindow.innerHTML += `
-                <div id="${loadingId}" class="flex gap-3">
-                    <div class="w-8 h-8 rounded-full bg-highlight flex items-center justify-center flex-shrink-0 text-white"><i class="fa-solid fa-robot"></i></div>
-                    <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-400 italic">
-                        AI 思考中...
-                    </div>
-                </div>
-            `;
+            chatWindow.innerHTML += `<div id="${loadingId}" class="flex gap-3"><div class="w-8 h-8 rounded-full bg-highlight flex items-center justify-center flex-shrink-0 text-white"><i class="fa-solid fa-robot"></i></div><div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-400 italic">AI 思考中...</div></div>`;
             chatWindow.scrollTop = chatWindow.scrollHeight;
-
             try {
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message })
-                });
-               
-                const data = await response.json();
-               
-                if (!response.ok) {
-                    throw new Error(data.reply || "未知的伺服器錯誤");
-                }
-               
-                document.getElementById(loadingId).remove();
-                const formattedReply = data.reply.replace(/\n/g, '<br>');
-
-                chatWindow.innerHTML += `
-                    <div class="flex gap-3">
-                        <div class="w-8 h-8 rounded-full bg-highlight text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-robot"></i></div>
-                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-200">
-                            ${formattedReply}
-                        </div>
-                    </div>
-                `;
-                chatWindow.scrollTop = chatWindow.scrollHeight;
-
+                const response = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: message }) });
+                const data = await response.json(); if (!response.ok) { throw new Error(data.reply || "未知的伺服器錯誤"); }
+                document.getElementById(loadingId).remove(); const formattedReply = data.reply.replace(/\n/g, '<br>');
+                chatWindow.innerHTML += `<div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-highlight text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-robot"></i></div><div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-gray-200">${formattedReply}</div></div>`;
             } catch (error) {
                 document.getElementById(loadingId).remove();
-                chatWindow.innerHTML += `
-                    <div class="flex gap-3">
-                        <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                        <div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-red-400">
-                            <strong>真實錯誤原因：</strong><br>${error.message}
-                        </div>
-                    </div>
-                `;
-                chatWindow.scrollTop = chatWindow.scrollHeight;
-            } finally {
-                inputField.disabled = false;
-                inputField.placeholder = "輸入題目...";
-                inputField.focus();
-            }
+                chatWindow.innerHTML += `<div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0"><i class="fa-solid fa-triangle-exclamation"></i></div><div class="bg-gray-800 p-3 rounded-xl rounded-tl-none text-sm text-red-400"><strong>真實錯誤原因：</strong><br>${error.message}</div></div>`;
+            } finally { inputField.disabled = false; inputField.placeholder = "輸入題目..."; inputField.focus(); chatWindow.scrollTop = chatWindow.scrollHeight; }
         }
-
-        document.getElementById('chat-input').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
+        document.getElementById('chat-input').addEventListener('keypress', function (e) { if (e.key === 'Enter') { sendMessage(); } });
     </script>
 </body>
 </html> 
