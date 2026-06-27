@@ -196,6 +196,8 @@
             const detailView = document.getElementById('view-grade-detail');
             detailView.classList.remove('hidden');
             detailView.classList.add('block');
+
+            window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
         // --- ↩️ 返回按鈕修復 ---

@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   flask-app:
     build: .
@@ -10,3 +12,20 @@ services:
       - FLASK_ENV=development
     env_file:
       - .env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: formula-x-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5123:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
