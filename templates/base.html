@@ -115,27 +115,23 @@
 
     <script>
         let favorites = JSON.parse(localStorage.getItem('formulaFavorites')) || [];
-        let previousMainViewId = ''; // 紀錄切換前的主畫面 ID
+        let previousMainViewId = ''; 
 
-        // 🌟 網頁載入時的初始化
         window.onload = () => {
             updateAllStarIcons();
             renderFavorites();
             
-            // 🎯 助教最愛的進階功能：自動偵測網址有沒有帶參數 (例如：/math?subject=數學&grade=二年級)
             const urlParams = new URLSearchParams(window.location.search);
             const subject = urlParams.get('subject');
             const grade = urlParams.get('grade');
             
             if (subject && grade) {
-                // 如果網址有參數，載入完馬上觸發顯示該年級的詳細公式
                 setTimeout(() => {
                     switchToGradeDetail(subject, grade);
                 }, 100);
             }
         };
 
-        // --- 🍔 側邊欄控制 ---
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
@@ -145,7 +141,6 @@
             }
         }
 
-        // --- 標籤顏色系統 ---
         function getSubjectColorClass(subject) {
             if(subject === '數學') return 'bg-tagMath';
             if(subject === '理化') return 'bg-tagPhys';
@@ -159,21 +154,19 @@
             return 'bg-gray-600';
         }
 
-        // --- 🎯 全新修復的年級詳細頁面切換 ---
         function switchToGradeDetail(subject, grade) {
             document.getElementById('grade-detail-title').innerText = `${subject} - ${grade}`;
             const container = document.getElementById('grade-detail-container');
             if (!container) return;
             container.innerHTML = ''; 
 
-            // 從當前網頁上搜刮所有的公式卡片
             const sourceCards = document.querySelectorAll('.formula-card');
             let foundAny = false;
             
             sourceCards.forEach(card => {
                 if (card.dataset.subject === subject && card.dataset.grade === grade) {
                     const clone = card.cloneNode(true);
-                    clone.style.display = 'block'; // 確保解除隱藏限制
+                    clone.style.display = 'block';
                     clone.classList.remove('hidden');
                     container.appendChild(clone);
                     foundAny = true;
@@ -184,7 +177,6 @@
                 container.innerHTML = '<p class="text-gray-500 col-span-full text-center mt-10 text-lg">這個年級目前沒有公式卡片喔！</p>';
             }
 
-            // 自動找出目前亮著的主畫面（view-home, view-math, 或 view-physics）並把它藏起來
             const currentActiveView = document.querySelector('.view-section.block');
             if (currentActiveView && currentActiveView.id !== 'view-grade-detail') {
                 previousMainViewId = currentActiveView.id;
@@ -192,7 +184,6 @@
                 currentActiveView.classList.add('hidden');
             }
 
-            // 亮起詳細頁面
             const detailView = document.getElementById('view-grade-detail');
             detailView.classList.remove('hidden');
             detailView.classList.add('block');
@@ -200,17 +191,14 @@
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        // --- ↩️ 返回按鈕修復 ---
         function goBackToMain() {
-            // 如果網址帶有參數，代表是從別頁跳過來的，返回時直接回到該科目的主頁
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('grade')) {
                 const currentPath = window.location.pathname;
-                window.location.href = currentPath; // 重新整理去除網址參數，回到主列表
+                window.location.href = currentPath; 
                 return;
             }
 
-            // 如果是純區域切換，就回復原本隱藏的主畫面
             const detailView = document.getElementById('view-grade-detail');
             detailView.classList.remove('block');
             detailView.classList.add('hidden');
@@ -224,7 +212,6 @@
             }
         }
 
-        // --- ⭐ 收藏功能維持原樣 ---
         function toggleFavorite(btn) {
             const card = btn.closest('.formula-card');
             const title = card.dataset.title;
@@ -262,7 +249,6 @@
             });
         }
 
-        // --- 彈出視窗與 AI 聊天室 (保持原樣不壓縮) ---
         function openModal(card) {
             const subject = card.dataset.subject; const grade = card.dataset.grade;
             document.getElementById('modal-title').innerText = card.dataset.title;

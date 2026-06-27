@@ -9,28 +9,99 @@
     <h2 class="text-2xl font-bold mb-4 border-l-4 border-highlight pl-3 text-white">常用公式</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         
-        <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-             data-title="牛頓第二運動定律" data-subject="理化" data-grade="二年級" data-desc="用來計算物體受力後產生的加速度。F 是力，m 是質量，a 是加速度。"
-             onclick="openModal(this)">
+        <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="密度公式" data-formula="D = M / V" data-subject="理化" data-grade="二年級" data-desc="物體的緊密程度。質量除以體積。可變形為 M = V×D 或 V = M/D。" onclick="openModal(this)">
             <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
-            <div class="flex gap-2 mb-3">
-                <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span>
-                <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
-            </div>
-            <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">牛頓第二運動定律</h3>
-            <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">F = m × a</div>
+            <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+            <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">密度公式</h3>
+            <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-1"><span>D = M / V</span><span>M = V × D</span></div>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="牛頓第二定律" data-formula="F = m × a" data-subject="理化" data-grade="三年級" data-desc="物體受合力作用時，會產生與合力同向的加速度。" onclick="openModal(this)">
+            <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+            <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagPhys rounded-full shadow tracking-wider">理化</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+            <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">牛頓第二定律</h3>
+            <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">F = m × a</div>
         </div>
         
         <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
-             data-title="畢氏定理" data-subject="數學" data-grade="二年級" data-desc="直角三角形中，兩股的平方和等於斜邊的平方。"
+             data-title="科學記號標準式" data-formula="a × 10ⁿ" data-subject="數學" data-grade="一年級" data-desc="用來表示極大或極小的數字。前面乘的數字 a 必須大於等於 1 且小於 10。"
              onclick="openModal(this)">
             <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
-            <div class="flex gap-2 mb-3">
-                <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span>
-                <span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span>
+            <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG1 rounded-full shadow tracking-wider">一年級</span></div>
+            <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">科學記號</h3>
+            <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-2">
+                <span>a × 10ⁿ</span>
+                <span class="text-base">1 ≤ a < 10</span>
             </div>
+        </div>
+        
+        <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+             data-title="三大乘法公式" data-formula="(a±b)²=a²±2ab+b², (a+b)(a-b)=a²-b²" data-subject="數學" data-grade="二年級" data-desc="和的平方、差的平方與平方差公式，是一元二次方程式與多項式運算的基礎。"
+             onclick="openModal(this)">
+            <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+            <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+            <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">三大乘法公式</h3>
+            <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex flex-col gap-2">
+                <span>(a±b)² = a² ± 2ab + b²</span>
+                <span>(a+b)(a-b) = a² - b²</span>
+            </div>
+        </div>
+        
+        <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="畢氏定理" data-formula="a² + b² = c²" data-subject="數學" data-grade="二年級" data-desc="直角三角形中，兩股的平方和等於斜邊的平方。" onclick="openModal(this)">
+            <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+            <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
             <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">畢氏定理</h3>
-            <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 bg-opacity-50 py-3 rounded tracking-wider">a² + b² = c²</div>
+            <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">
+                a² + b² = c²
+            </div>
+        </div>
+        
+        <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+             data-title="方程式判別式" data-formula="判別式 = b² - 4ac" data-subject="數學" data-grade="二年級" data-desc="大於0有相異兩根；等於0有相等的兩根(重根)；小於0則方程式無解。"
+             onclick="openModal(this)">
+            <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+            <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+            <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">判別式 (D)</h3>
+            <div class="text-highlight text-2xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">
+                D = b² - 4ac
+            </div>
+        </div>
+        
+        <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+             data-title="一元二次公式解" data-formula="x = (-b ± √(b² - 4ac)) / 2a" data-subject="數學" data-grade="二年級" data-desc="當一元二次方程式 ax² + bx + c = 0 十字交乘法解不出來時的最佳萬用解法。"
+             onclick="openModal(this)">
+            <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+            <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+            <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">公式解</h3>
+            <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex items-center justify-center gap-2">
+                <span>x =</span>
+                <div class="flex flex-col items-center">
+                    <span class="border-b border-highlight pb-1 px-2">-b ± √<span class="overline">b² - 4ac</span></span>
+                    <span class="pt-1">2a</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" 
+             data-title="等差級數和公式" data-formula="Sn = n(a₁ + a_n) / 2" data-subject="數學" data-grade="二年級" data-desc="等差數列求和公式。利用上底加下底乘以高除以二的梯形面積概念記憶。"
+             onclick="openModal(this)">
+            <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+            <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG2 rounded-full shadow tracking-wider">二年級</span></div>
+            <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">等差級數和</h3>
+            <div class="text-highlight text-lg font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider flex items-center justify-center gap-3">
+                <span>Sₙ =</span>
+                <div class="flex flex-col items-center">
+                    <span class="border-b border-highlight pb-1 px-2">n(a₁ + aₙ)</span>
+                    <span class="pt-1">2</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card rounded-xl p-5 cursor-pointer relative formula-card" data-title="二次函數頂點式" data-formula="y = a(x-h)² + k" data-subject="數學" data-grade="三年級" data-desc="拋物線標準式，可直接看出頂點坐標為 (h, k)，且對稱軸為 x=h。" onclick="openModal(this)">
+            <button class="absolute top-4 right-4 text-gray-600 hover:text-yellow-500 fav-btn" onclick="event.stopPropagation(); toggleFavorite(this)"><i class="fa-solid fa-star text-2xl"></i></button>
+            <div class="flex gap-2 mb-3"><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagMath rounded-full shadow tracking-wider">數學</span><span class="font-wenkai font-light text-base text-white px-3 py-1 bg-tagG3 rounded-full shadow tracking-wider">三年級</span></div>
+            <h3 class="font-wenkai font-normal text-2xl mb-3 text-gray-100 tracking-wide">函數頂點式</h3>
+            <div class="text-highlight text-xl font-math italic text-center mt-4 bg-gray-900 py-3 rounded tracking-wider">y = a(x-h)² + k</div>
         </div>
 
     </div>
