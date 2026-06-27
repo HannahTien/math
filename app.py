@@ -11,17 +11,11 @@ from selenium.webdriver.common.by import By
 load_dotenv()
 app = Flask(__name__)
 
-# ==========================================
-# 1. Gemini AI 家教設定
-# ==========================================
 api_key = os.environ.get("GEMINI_API_KEY")
 if api_key:
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel('gemini-2.5-flash')
 
-# ==========================================
-# 2. Render 雲端資料庫設定
-# ==========================================
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('RENDER_DB_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -36,9 +30,6 @@ class MathFormula(db.Model):
 with app.app_context():
     db.create_all()
 
-# ==========================================
-# 3. 網站原本的路由 (完全恢復你原本乾淨的樣子)
-# ==========================================
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -83,9 +74,6 @@ def chat():
     except Exception as e:
         return jsonify({"reply": f"AI 助教目前連線異常，請稍後再試。錯誤代碼：{str(e)}"}), 500
 
-# ==========================================
-# 4. 助教版爬蟲功能 (獨立運作，不干擾網頁)
-# ==========================================
 @app.route('/crawl')
 def crawl_formulas():
     print("啟動 Selenium 爬蟲...")
@@ -120,7 +108,6 @@ def crawl_formulas():
             db.session.add(new_data)
             db.session.commit()
             print("🎉 雲端資料庫更新成功！")
-            # 🌟 照助教的方式，只回傳成功訊息，不渲染任何花俏的網頁
             return "Crawl Success! 爬蟲成功並已存入資料庫！"
         else:
             return "⚠️ 未擷取到文字，請檢查網頁。"
@@ -129,6 +116,64 @@ def crawl_formulas():
         return f"爬蟲發生錯誤：{e}"
     finally:
         driver.quit()
+
+@app.route('/analyze')
+def analyze_data():
+    latest_data = MathFormula.query.order_by(MathFormula.created_at.desc()).first()
+    
+    if not latest_data or not latest_data.content:
+        return "<h3>⚠️ 目前雲端資料庫沒有文本可供分析，請先前往 /crawl 執行爬蟲。</h3>"
+        
+    text_content = latest_data.content
+    
+    keywords = ["方程式", "三角形", "面積", "函數", "相似", "機率", "圓周率", "絕對值", "平方根", "多項式", "幾何", "座標"]
+
+    analysis_result = {}
+    for word in keywords:
+        count = text_content.count(word)
+        if count > 0:
+            analysis_result[word] = count
+            
+    sorted_result = sorted(analysis_result.items(), key=lambda x: x[1], reverse=True)
+    
+    html = """
+    <div style="font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <h2 style="color: #2c3e50;">📊 國中數學公式庫：核心概念詞頻分析報表</h2>
+        <p style="color: #555; line-height: 1.6;">
+            本系統對爬蟲取得之無結構化數學文本進行了關鍵字萃取與特徵分析。此量化數據可作為評估各章節公式比重之依據，展現了資料科學與數學專業之結合。
+        </p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+            <tr style="background-color: #f8f9fa; border-bottom: 2px solid #ccc;">
+                <th style="padding: 12px;">數學概念關鍵字</th>
+                <th style="padding: 12px;">出現次數 (Frequency)</th>
+                <th style="padding: 12px; width: 50%;">權重佔比直方圖</th>
+            </tr>
+    """
+    
+    max_count = sorted_result[0][1] if sorted_result else 1
+    
+    for word, count in sorted_result:
+        bar_width = int((count / max_count) * 100)
+        html += f"""
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 12px; font-weight: bold; color: #34495e;">{word}</td>
+                <td style="padding: 12px;">{count} 次</td>
+                <td style="padding: 12px;">
+                    <div style="background-color: #3498db; height: 18px; width: {bar_width}%; border-radius: 3px;"></div>
+                </td>
+            </tr>
+        """
+        
+    html += """
+        </table>
+        <p style="margin-top: 20px; font-size: 14px; color: #7f8c8d; text-align: right;">
+            <i>* 分析模型：Term Frequency (TF) 特徵提取</i>
+        </p>
+    </div>
+    """
+    
+    return html
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
